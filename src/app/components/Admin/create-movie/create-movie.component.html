@@ -1,0 +1,132 @@
+<section class="text-gray-600 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+      <h1
+        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+      >
+        Create new project
+      </h1>
+      <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p> -->
+    </div>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <form [formGroup]="form" (submit)="onSaveMovie()">
+        <div class="text-center">
+          <button
+            type="button"
+            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            (click)="filePicker.click()"
+          >
+            ADD Movie POSTER
+          </button>
+          <input
+            type="file"
+            #filePicker
+            (change)="onImagePicked($event)"
+            style="display: none"
+          />
+        </div>
+        @if (imagePreview !== '' && imagePreview && form.get('image')?.valid) {
+        <div class="image-preview">
+          <img [src]="imagePreview" [alt]="form.value.title" />
+        </div>
+        }
+        <!-- <div class="text-center">
+          <button class="button1" color="primary" type="submit">
+            Save Movie
+          </button>
+        </div> -->
+
+        <div class="flex flex-wrap -m-2">
+          <!-- Title -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="title" class="leading-7 text-sm text-gray-600"
+                >Title</label
+              >
+              <input
+                type="text"
+                formControlName="title"
+                placeholder="place title ..."
+                id="title"
+                name="title"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Director -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="director" class="leading-7 text-sm text-gray-600"
+                >Director</label
+              >
+              <input
+                type="text"
+                id="director"
+                formControlName="director"
+                placeholder="place director ..."
+                name="director"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Story -->
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="story" class="leading-7 text-sm text-gray-600"
+                >Story</label
+              >
+              <textarea
+                id="story"
+                name="story"
+                formControlName="story"
+                placeholder="place story ..."
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+              ></textarea>
+            </div>
+          </div>
+          <!-- Language -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="language" class="leading-7 text-sm text-gray-600"
+                >Language</label
+              >
+              <input
+                type="text"
+                formControlName="language"
+                placeholder="place language ..."
+                id="language"
+                name="language"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Status -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="status" class="leading-7 text-sm text-gray-600"
+                >Status</label
+              >
+              <input
+                type="text"
+                id="status"
+                formControlName="status"
+                placeholder="place status ..."
+                name="status"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+
+          <div class="p-2 w-full">
+            <button
+              type="submit"
+              class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            >
+              ADD MOVIE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

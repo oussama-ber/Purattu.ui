@@ -1,14 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { Component, inject } from '@angular/core';
+import { Movie } from '../../../models/movie.model';
+import { MovieService } from '../../../services/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-movies-list',
-  templateUrl: './movies-list.component.html',
-  styleUrl: './movies-list.component.scss',
+  selector: 'app-manage-movies',
+  templateUrl: './manage-movies.component.html',
+  styleUrl: './manage-movies.component.scss'
 })
-export class MoviesListComponent implements OnInit {
-  constructor() {}
+export class ManageMoviesComponent {
   images = [
     { path: 'https://source.unsplash.com/800x600/?nature' },
     { path: 'https://source.unsplash.com/800x600/?car' },
@@ -16,6 +16,9 @@ export class MoviesListComponent implements OnInit {
     { path: 'https://source.unsplash.com/800x600/?fantasy' },
   ];
   _movieService = inject(MovieService);
+  constructor(private _router: Router) {
+
+  }
   //#region Variables
   fetchedMovies: Movie[] = [];
   fetchedMoviesIsfetched: boolean = false;
@@ -35,6 +38,7 @@ export class MoviesListComponent implements OnInit {
         // this.fetchedMoviesIsfetched = false;
       },
       (error) => {
+        this.fetchedMovies = [];
         console.log('error', error);
       }
     );
@@ -60,5 +64,20 @@ export class MoviesListComponent implements OnInit {
         }
       );
     }
+  }
+  onEdit(movieId: string){
+    this._router.navigate([`/editMovie/${movieId}`]);
+  }
+  onDelete(movieId: string){
+    this._movieService.deleteMovie(movieId).subscribe((res)=>{
+      if(res){
+        this.getAllMovies();
+      }else{
+        alert('could not delete the movie')
+      }
+    })
+  }
+  goToCreateMovie(){
+    this._router.navigate(['/createMovie']);
   }
 }

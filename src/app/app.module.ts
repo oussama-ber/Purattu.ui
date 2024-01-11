@@ -13,10 +13,18 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MovieService } from './services/movie.service';
+import { CreateMovieComponent } from './components/Admin/create-movie/create-movie.component';
+import { LoginComponent } from './components/Admin/login/login.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
+import { AuthInterceptor } from './services/auth-interceptor';
+import { SignupComponent } from './components/Admin/signup/signup.component';
+import { ManageMoviesComponent } from './components/Admin/manage-movies/manage-movies.component';
+import { EditMovieComponent } from './components/Admin/edit-movie/edit-movie.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +37,12 @@ import { MovieService } from './services/movie.service';
     MoviesListComponent,
     MovieDetailsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CreateMovieComponent,
+    LoginComponent,
+    SignupComponent,
+    ManageMoviesComponent,
+    EditMovieComponent,
   ],
   imports: [
     RouterLink,
@@ -39,10 +52,15 @@ import { MovieService } from './services/movie.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [MovieService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    MovieService,
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}
