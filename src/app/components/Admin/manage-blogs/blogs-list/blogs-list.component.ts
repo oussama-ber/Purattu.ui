@@ -24,14 +24,12 @@ export class BlogsListComponent {
   getAllBlogs() {
     this._blogService.getAllBlogs().subscribe(
       (res) => {
-        console.log('res', res);
         this.fetchedBlogs = res.blogs;
-        console.log('this.fetchedblogs', this.fetchedBlogs);
         this.fetchedBlogsIsfetched = true;
       },
       (error) => {
         this.fetchedBlogs = [];
-        console.log('error', error);
+        console.error('error', error);
       }
     );
   }

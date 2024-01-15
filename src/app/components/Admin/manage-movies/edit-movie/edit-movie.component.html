@@ -1,14 +1,13 @@
-<section class="text-gray-600 body-font relative">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-col text-center w-full mb-12">
-      <h1
-        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-      >
-        Edit movie
-      </h1>
-      <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p> -->
-    </div>
-    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+<section class="text-gray-600 body-font">
+  <div
+    class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
+  >
+    Edit new movie
+  </div>
+  <div class="container px-2 py-24 mx-auto flex flex-wrap items-center">
+    <div
+      class="lg:w-2/3 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
+    >
       <form [formGroup]="updateMovieform" (submit)="onUpdateMovie()">
         <div class="text-center">
           <button
@@ -16,7 +15,7 @@
             class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             (click)="filePicker.click()"
           >
-            Edit Movie POSTER
+            update Movie photos (under dev)
           </button>
           <input
             type="file"
@@ -25,7 +24,7 @@
             style="display: none"
           />
         </div>
-        @if (imagePreview !== '' && imagePreview && updateMovieform.get('imagePath')?.valid) {
+        @if (imagePreview !== '' && imagePreview && updateMovieform.get('image')?.valid) {
         <div class="image-preview">
           <img [src]="imagePreview" [alt]="updateMovieform.value.title" />
         </div>
@@ -40,82 +39,284 @@
           <!-- Title -->
           <div class="p-2 w-1/2">
             <div class="relative">
-              <label for="title" class="leading-7 text-sm text-gray-600"
-                >Title {{this.currentMovie.title}}</label
+              <label
+                for="title"
+                class="leading-7 text-base text-gray-600 font-normal"
+                >Title</label
               >
               <input
                 type="text"
-                id="title"
                 formControlName="title"
-                placeholder="place title here ..."
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-          </div>
-          <!-- Director -->
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="director" class="leading-7 text-sm text-gray-600"
-                >Director</label
-              >
-              <input
-                type="text"
-                id="director"
-                formControlName="director"
-                placeholder="place director ..."
-                name="director"
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-          </div>
-          <!-- Story -->
-          <div class="p-2 w-full">
-            <div class="relative">
-              <label for="story" class="leading-7 text-sm text-gray-600"
-                >Story</label
-              >
-              <textarea
-                id="story"
-                name="story"
-                formControlName="story"
-                placeholder="place story ..."
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-              ></textarea>
-            </div>
-          </div>
-          <!-- Language -->
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="language" class="leading-7 text-sm text-gray-600"
-                >Language</label
-              >
-              <input
-                type="text"
-                formControlName="language"
-                placeholder="place language ..."
-                id="language"
-                name="language"
+                placeholder="place title ..."
+                id="title"
+                name="title"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
           <!-- Status -->
           <div class="p-2 w-1/2">
+            <label for="status" class="leading-7 text-sm text-gray-600"
+              >Status</label
+            >
             <div class="relative">
-              <label for="status" class="leading-7 text-sm text-gray-600"
-                >Status</label
+              <select
+                id="status"
+                name="status"
+                formControlName="status"
+                placeholder="place tag ..."
               >
+                <!-- class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" -->
+                @for ( movieStatus of moviesStatus; track $index) {
+                <option [value]="movieStatus" (click)="onAddCoundtryOfOrigin()">
+                  {{ movieStatus }}
+                </option>
+                }
+              </select>
+            </div>
+          </div>
+          <!-- Story -->
+          <div class="p-2 w-full">
+            <div class="relative">
+              <label for="story" class="leading-7 text-sm text-gray-600">Story</label>
+              <textarea
+                id="story"
+                name="story"
+                formControlName="story"
+                placeholder="place story ..."
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+              ></textarea>
+            </div>
+          </div>
+          <!-- Director -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="director" class="leading-7 text-sm text-gray-600">Director</label>
               <input
                 type="text"
-                id="status"
-                formControlName="status"
-                placeholder="place status ..."
-                name="status"
+                formControlName="director"
+                placeholder="place director ..."
+                id="director"
+                name="director"
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
-
+          <!-- coProducer -->
+          <div class="p-2 w-1/2">
+            <label for="coProducer" class="leading-7 text-sm text-gray-600">Co Producer</label>
+            <div class="relative justifyItems">
+              <div class="w-5/6">
+                <input
+                  type="text"
+                  id="coProducer"
+                  formControlName="coProducer"
+                  placeholder="place coProducer ..."
+                  name="coProducer"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+              <button
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                [disabled]="
+                  updateMovieform.value.coProducer == null ||
+                  updateMovieform.value.coProducer.length == 0
+                "
+                (click)="onAddItem('coproducers')"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- Writer -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="writer" class="leading-7 text-sm text-gray-600"
+                >Writer</label
+              >
+              <input
+                type="text"
+                formControlName="writer"
+                placeholder="place writer ..."
+                id="writer"
+                name="writer"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Associate producer -->
+          <div class="p-2 w-1/2">
+            <label for="associateProducer" class="leading-7 text-sm text-gray-600">Associate Producer</label>
+            <div class="relative justifyItems">
+              <div class="w-5/6">
+                <input
+                  type="text"
+                  id="associateProducer"
+                  formControlName="associateProducer"
+                  placeholder="place associateProducer ..."
+                  name="associateProducer"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+              <button
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                [disabled]="
+                  updateMovieform.value.associateProducer == null ||
+                  updateMovieform.value.associateProducer.length == 0
+                "
+                (click)="onAddItem('associateProducer')"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- Cast -->
+          <div class="p-2 w-1/2">
+            <label for="cast" class="leading-7 text-sm text-gray-600"
+              >Cast</label
+            >
+            <div class="relative justifyItems">
+              <div class="w-5/6">
+                <input
+                  type="text"
+                  id="cast"
+                  formControlName="cast"
+                  placeholder="place cast ..."
+                  name="cast"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+              <button
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                [disabled]="
+                  updateMovieform.value.cast == null || updateMovieform.value.cast.length == 0
+                "
+                (click)="onAddItem('cast')"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- Contries Of Origin -->
+          <div class="p-2 w-1/2">
+            <label
+              for="contriesOfOrigin"
+              class="leading-7 text-sm text-gray-600"
+              >Contries Of Origin</label
+            >
+            <div class="relative justifyItems">
+              <div class="w-5/6">
+                <input
+                  type="text"
+                  id="contriesOfOrigin"
+                  formControlName="contriesOfOrigin"
+                  placeholder="place contriesOfOrigin ..."
+                  name="contriesOfOrigin"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+              <button
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                [disabled]="
+                  updateMovieform.value.contriesOfOrigin == null ||
+                  updateMovieform.value.contriesOfOrigin.length == 0
+                "
+                (click)="onAddItem('contriesOfOrigin')"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- DOP -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="dop" class="leading-7 text-sm text-gray-600"
+                >DOP</label
+              >
+              <input
+                type="text"
+                formControlName="dop"
+                placeholder="place dop ..."
+                id="dop"
+                name="dop"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Release Date -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="releaseDate" class="leading-7 text-sm text-gray-600"
+                >Release Date</label
+              >
+              <input
+                type="number"
+                formControlName="releaseDate"
+                placeholder="place releaseDate ..."
+                id="releaseDate"
+                name="releaseDate"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Music -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="music" class="leading-7 text-sm text-gray-600"
+                >Music</label
+              >
+              <input
+                type="text"
+                formControlName="music"
+                placeholder="place music ..."
+                id="music"
+                name="music"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Running time -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <label for="releaseDate" class="leading-7 text-sm text-gray-600"
+                >Running Time</label
+              >
+              <input
+                type="number"
+                formControlName="runningTime"
+                placeholder="place runningTime ..."
+                id="runningTime"
+                name="runningTime"
+                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+          <!-- Producer -->
+          <div class="p-2 w-1/2">
+            <label for="producer" class="leading-7 text-sm text-gray-600">Producer</label>
+            <div class="relative justifyItems">
+              <div class="w-5/6">
+                <input
+                  type="text"
+                  id="producer"
+                  formControlName="producer"
+                  placeholder="place producer ..."
+                  name="producer"
+                  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+              <button
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                [disabled]="
+                  updateMovieform.value.producer == null || updateMovieform.value.producer.length == 0
+                "
+                (click)="onAddItem('producers')"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- Submit -->
           <div class="p-2 w-full">
             <button
               type="submit"
@@ -126,6 +327,74 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="lg:w-1/3 md:w-1/2 md:pr-16 lg:pr-0 pr-0 bg-gray-100">
+      <!-- @if (coProducers.length > 0) { -->
+      <div class="flex flex-row flex-wrap">
+        Co producers : @for (coProducer of coProducers; track $index) {
+        <!-- <div
+          (click)="onDeleteItem('coproducers', $index)"
+          class="rounded-full h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+        > -->
+        <span
+          (click)="onDeleteItem('coproducers', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+        >
+          {{ coProducer }}
+        </span>
+        <!-- CATEGORY -->
+        <!-- </div> -->
+        }
+      </div>
+      <div class="flex flex-row flex-wrap">
+        Associate Producers : @for (associateProducer of associateProducers; track $index) {
+        <div
+          (click)="onDeleteItem('associateProducers', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+        >
+          {{ associateProducer }}
+        </div>
+        }
+      </div>
+      <div class="flex flex-row flex-wrap">
+        Cast : @for (cast of casts; track $index) {
+        <div
+          (click)="onDeleteItem('cast', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+        >
+          {{ cast }}
+        </div>
+        }
+      </div>
+      <div class="flex flex-row flex-wrap">
+        Contries Of Origin : @for (contrieOfOrigin of contriesOfOrigins; track
+        $index) {
+        <div
+          (click)="onDeleteItem('contriesOfOrigin', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+        >
+          {{ contrieOfOrigin }}
+        </div>
+        }
+      </div>
+      <div class="flex flex-row flex-wrap">
+        Producers : @for (producer of producers; track $index) {
+        <div
+          (click)="onDeleteItem('producers', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+        >
+          {{ producer }}
+        </div>
+        }
+      </div>
+      <!-- } -->
+      <!-- <h1 class="title-font font-medium text-3xl text-gray-900">
+        Slow-carb next level shoindcgoitch ethical authentic, poko scenester
+      </h1>
+      <p class="leading-relaxed mt-4">
+        Poke slow-carb mixtape knausgaard, typewriter street art gentrify
+        hammock starladder roathse. Craies vegan tousled etsy austin.
+      </p> -->
     </div>
   </div>
 </section>

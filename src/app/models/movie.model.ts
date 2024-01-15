@@ -15,7 +15,6 @@ export class Movie {
   public runningTime: number = 0;
   public producer: string[] = [];
   public awards: string [] = [];
-
   public status: string = '';
   public imagePath: string = '';
 }
@@ -27,8 +26,16 @@ export class UpdateMovieDTO {
   public title: string = '';
   public story: string = '';
   public director: string = '';
-  public mainCast: string [] = [];
-  public language: string = '';
+  public coProducer: string [] = [];
+  public associateProducer: string []= [];
+  public writer: string = '';
+  public cast: string [] = [];
+  public contriesOfOrigin: string [] = [];
+  public dop: string = '';
+  public releaseDate: number = 0;
+  public music: string = '';
+  public runningTime: number = 0;
+  public producer: string [] = [];
   public awards: string [] = [];
   public status: string = '';
 }

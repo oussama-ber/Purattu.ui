@@ -212,8 +212,8 @@ export class CreateMovieComponent implements OnInit {
       createMovieDto.status = this.form.value.status;
       createMovieDto.imageFile = this.form.value.image;
       this._movieService.insertMovie(createMovieDto).subscribe((res) => {
-        console.log('res', res);
-        this.isLoading = false
+        this.isLoading = false;
+
       });
     } else {
 
@@ -223,5 +223,12 @@ export class CreateMovieComponent implements OnInit {
   }
   onCancel(){
     this.closeOuput.emit({});
+  }
+  onResetArrays(){
+    this.coProducers = [];
+    this.associateProducers = [];
+    this.casts = [];
+    this.contriesOfOrigin = [];
+    this.producers = [];
   }
 }

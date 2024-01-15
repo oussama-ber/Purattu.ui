@@ -30,16 +30,14 @@ export class ManageMoviesComponent {
   getAllMovies() {
     this._movieService.getAllMovies().subscribe(
       (res) => {
-        console.log('res', res);
         this.fetchedMovies = res.movies;
-        console.log('this.fetchedMovies', this.fetchedMovies);
         // this.fetchedMovies = [];
         this.fetchedMoviesIsfetched = true;
         // this.fetchedMoviesIsfetched = false;
       },
       (error) => {
         this.fetchedMovies = [];
-        console.log('error', error);
+        console.error('error', error);
       }
     );
   }
@@ -54,13 +52,12 @@ export class ManageMoviesComponent {
 
       formData.append('file', file, file.name);
 
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
       const upload$ = this._movieService.uploadfile(formData).subscribe(
         (res) => {
-          console.log('res', res);
+          // console.log('res', res);
         },
         (error) => {
-          console.log('error', error);
+          console.error('error', error);
         }
       );
     }

@@ -62,13 +62,11 @@ export class CreateBlogComponent {
       createBlogDTO.status = this.form.value.status;
       createBlogDTO.imageFile = this.form.value.image;
       this._blogService.insertBlog(createBlogDTO).subscribe((res) => {
-        console.log('res', res);
         this.isLoading = false
       });
     } else {
 
     }
-    console.log('the blog should be added.! ');
 
     this.form.reset();
   }

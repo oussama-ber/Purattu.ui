@@ -78,7 +78,17 @@ export class MovieService {
     MovieData.append('title', createMovieDto.title);
     MovieData.append('story', createMovieDto.story);
     MovieData.append('director', createMovieDto.director);
-    MovieData.append('language', createMovieDto.language);
+    MovieData.append('coProducer', createMovieDto.coProducer.toString());
+    MovieData.append('writer', createMovieDto.writer);
+    MovieData.append('associateProducer', createMovieDto.associateProducer.toString());
+    MovieData.append('cast', createMovieDto.cast.toString());
+    MovieData.append('contriesOfOrigin', createMovieDto.contriesOfOrigin.toString());
+    MovieData.append('dop', createMovieDto.dop);
+    MovieData.append('releaseDate', createMovieDto.releaseDate.toString());
+    MovieData.append('music', createMovieDto.music);
+    MovieData.append('runningTime', createMovieDto.runningTime.toString());
+    MovieData.append('producer', createMovieDto.producer.toString());
+    // MovieData.append('awards', createMovieDto.awards.toString());
     MovieData.append('status', createMovieDto.status);
     MovieData.append(
       'file',
