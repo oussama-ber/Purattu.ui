@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MovieService } from '../../../services/movie.service';
-import { Movie, UpdateMovieDTO, UpdateMovieWithFileDTO } from '../../../models/movie.model';
+import { MovieService } from '../../../../services/movie.service';
+import { Movie, UpdateMovieDTO, UpdateMovieWithFileDTO } from '../../../../models/movie.model';
 import {
   FormBuilder,
   FormControl,
@@ -46,7 +46,7 @@ export class EditMovieComponent implements OnInit {
       title: currentMovie.title,
       story: currentMovie.story,
       director: currentMovie.director,
-      language: currentMovie.language,
+      language: currentMovie.status,
       status: currentMovie.status,
       imagePath: currentMovie.imagePath,
     });

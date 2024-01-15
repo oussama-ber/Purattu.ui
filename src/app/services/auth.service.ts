@@ -82,7 +82,7 @@ export class AuthService {
     postData.append('title', createMovieDto.title);
     postData.append('story', createMovieDto.story);
     postData.append('director', createMovieDto.director);
-    postData.append('language', createMovieDto.language);
+    postData.append('language', createMovieDto.status);
     postData.append('status', createMovieDto.status);
     postData.append(
       'file',

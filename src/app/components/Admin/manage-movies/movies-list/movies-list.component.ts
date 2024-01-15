@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { Movie } from '../../../models/movie.model';
-import { MovieService } from '../../../services/movie.service';
+import { Movie } from '../../../../models/movie.model';
+import { MovieService } from '../../../../services/movie.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-movies',
-  templateUrl: './manage-movies.component.html',
-  styleUrl: './manage-movies.component.scss'
+  templateUrl: './movies-list.component.html',
+  styleUrl: './movies-list.component.scss'
 })
 export class ManageMoviesComponent {
   images = [

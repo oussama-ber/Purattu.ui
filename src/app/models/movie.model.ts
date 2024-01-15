@@ -3,12 +3,21 @@ export class Movie {
   public title: string = '';
   public story: string = '';
   public director: string = '';
-  public mainCast: string [] = [];
-  public language: string = '';
+
+  public coProducer: string [] = [];
+  public writer: string = '';
+  public associateProducer: string [] = [];
+  public cast: string [] = [];
+  public contriesOfOrigin: string [] = [];
+  public dop: string = '';
+  public releaseDate: number = 0;
+  public music: string = '';
+  public runningTime: number = 0;
+  public producer: string[] = [];
   public awards: string [] = [];
+
   public status: string = '';
   public imagePath: string = '';
-  // public category: string = ''; // to ask
 }
 export class CreateMovieDTO extends Movie {
   public imageFile!: File;

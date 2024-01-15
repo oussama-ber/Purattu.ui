@@ -6,7 +6,13 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
-import { CreateMovieDTO, Movie, UpdateMovieDTO, UpdateMovieWithFileDTO } from '../models/movie.model';
+import {
+  CreateMovieDTO,
+  Movie,
+  UpdateMovieDTO,
+  UpdateMovieWithFileDTO,
+} from '../models/movie.model';
+import { country } from '../models/shared.models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +21,10 @@ export class MovieService {
   constructor(private http: HttpClient, private router: Router) {}
   // baseUrl: string = "https://reservation-api-0va0.onrender.com";
   baseUrl: string = 'http://localhost:3000';
-
+  courtriesUrl: string = 'assets/countries.json';
+  getCountries() {
+    return this.http.get<country[]>(this.courtriesUrl);
+  }
   getAllMovies(): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/movies');
   }
@@ -35,9 +44,23 @@ export class MovieService {
     MovieData.append('title', createMovieDto.title);
     MovieData.append('story', createMovieDto.story);
     MovieData.append('director', createMovieDto.director);
-    MovieData.append('language', createMovieDto.language);
+    MovieData.append('coProducer', createMovieDto.coProducer.toString());
+    MovieData.append('writer', createMovieDto.writer);
+    MovieData.append('associateProducer', createMovieDto.associateProducer.toString());
+    MovieData.append('cast', createMovieDto.cast.toString());
+    MovieData.append('contriesOfOrigin', createMovieDto.contriesOfOrigin.toString());
+    MovieData.append('dop', createMovieDto.dop);
+    MovieData.append('releaseDate', createMovieDto.releaseDate.toString());
+    MovieData.append('music', createMovieDto.music);
+    MovieData.append('runningTime', createMovieDto.runningTime.toString());
+    MovieData.append('producer', createMovieDto.producer.toString());
+    // MovieData.append('awards', createMovieDto.awards.toString());
     MovieData.append('status', createMovieDto.status);
-    MovieData.append('file', createMovieDto.imageFile, createMovieDto.imageFile.name);
+    MovieData.append(
+      'file',
+      createMovieDto.imageFile,
+      createMovieDto.imageFile.name
+    );
     return this.http
       .post<any>(this.baseUrl + '/movies/createMovie', MovieData)
       .pipe(
@@ -47,14 +70,21 @@ export class MovieService {
         })
       );
   }
-  updateMovie(movieId: string, createMovieDto: UpdateMovieWithFileDTO): Observable<any> {
+  updateMovie(
+    movieId: string,
+    createMovieDto: UpdateMovieWithFileDTO
+  ): Observable<any> {
     const MovieData = new FormData();
     MovieData.append('title', createMovieDto.title);
     MovieData.append('story', createMovieDto.story);
     MovieData.append('director', createMovieDto.director);
     MovieData.append('language', createMovieDto.language);
     MovieData.append('status', createMovieDto.status);
-    MovieData.append('file', createMovieDto.imageFile, createMovieDto.imageFile.name);
+    MovieData.append(
+      'file',
+      createMovieDto.imageFile,
+      createMovieDto.imageFile.name
+    );
     return this.http
       .patch<any>(this.baseUrl + `/movies/${movieId}`, MovieData)
       .pipe(
@@ -65,14 +95,12 @@ export class MovieService {
       );
   }
   deleteMovie(movieId: string): Observable<any> {
-    return this.http
-      .delete<any>(this.baseUrl + `/movies/${movieId}`)
-      .pipe(
-        catchError((error) => {
-          console.error('Error in deleteMovie:', error);
-          throw error; // Rethrow the error to be caught by the subscriber
-        })
-      );
+    return this.http.delete<any>(this.baseUrl + `/movies/${movieId}`).pipe(
+      catchError((error) => {
+        console.error('Error in deleteMovie:', error);
+        throw error; // Rethrow the error to be caught by the subscriber
+      })
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

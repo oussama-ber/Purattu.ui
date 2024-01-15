@@ -4,19 +4,19 @@
       <h1
         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
       >
-        Create new project
+        Create new Blog
       </h1>
       <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p> -->
     </div>
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
-      <form [formGroup]="form" (submit)="onSaveMovie()">
+      <form [formGroup]="form" (submit)="onSaveBlog()">
         <div class="text-center">
           <button
             type="button"
             class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             (click)="filePicker.click()"
           >
-            ADD Movie POSTER
+            ADD Blog POSTER
           </button>
           <input
             type="file"
@@ -53,39 +53,41 @@
               />
             </div>
           </div>
-          <!-- Director -->
+          <!-- Tag -->
           <div class="p-2 w-1/2">
             <div class="relative">
-              <label for="director" class="leading-7 text-sm text-gray-600"
-                >Director</label
-              >
-              <input
-                type="text"
-                id="director"
-                formControlName="director"
-                placeholder="place director ..."
-                name="director"
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
+              <label for="tag" class="leading-7 text-sm text-gray-600">
+                Tag
+              </label>
+              <select
+                id="tag"
+                name="tag"
+                formControlName="tag"
+                placeholder="place tag ..."
+                >
+                <!-- class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" -->
+                @for ( blogTag of blogTabOptions; track $index) {
+                <option value="blogTag">{{ blogTag }}</option>
+                }
+              </select>
             </div>
           </div>
-          <!-- Story -->
+          <!-- description -->
           <div class="p-2 w-full">
             <div class="relative">
-              <label for="story" class="leading-7 text-sm text-gray-600"
-                >Story</label
-              >
-              <textarea
-                id="story"
-                name="story"
-                formControlName="story"
-                placeholder="place story ..."
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-              ></textarea>
+              <label for="description" class="leading-7 text-sm text-gray-600">Description</label>
+              <input
+              type="text"
+              id="description"
+              formControlName="description"
+              placeholder="place description ..."
+              name="description"
+              class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
             </div>
           </div>
           <!-- Language -->
-          <div class="p-2 w-1/2">
+          <!-- <div class="p-2 w-1/2">
             <div class="relative">
               <label for="language" class="leading-7 text-sm text-gray-600"
                 >Language</label
@@ -99,7 +101,7 @@
                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-          </div>
+          </div> -->
           <!-- Status -->
           <div class="p-2 w-1/2">
             <div class="relative">
