@@ -1,0 +1,14 @@
+.justifyItems{
+  display: flex;
+  justify-items: center !important;
+  align-items: center;
+  gap: 10px;
+}
+.buttonStyles:hover{
+  cursor: pointer;
+}
+
+.pill-list-hover:hover{
+  cursor: pointer;
+  background-color: rgb(191 219 254);
+}
