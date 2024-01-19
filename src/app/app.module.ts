@@ -27,6 +27,7 @@ import { EditMovieComponent } from './components/Admin/manage-movies/edit-movie/
 import { BlogsListComponent } from './components/Admin/manage-blogs/blogs-list/blogs-list.component';
 import { BlogService } from './services/blog.service';
 import { CreateBlogComponent } from './components/Admin/manage-blogs/create-blog/create-blog.component';
+import { EditBlogComponent } from './components/Admin/manage-blogs/edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CreateBlogComponent } from './components/Admin/manage-blogs/create-blog
     EditMovieComponent,
     BlogsListComponent,
     CreateBlogComponent,
+    EditBlogComponent,
   ],
   imports: [
     RouterLink,

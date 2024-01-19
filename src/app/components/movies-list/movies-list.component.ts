@@ -51,7 +51,6 @@ export class MoviesListComponent implements OnInit {
       // const upload$ = this.http.post("/api/thumbnail-upload", formData);
       const upload$ = this._movieService.uploadfile(formData).subscribe(
         (res) => {
-          // console.log('res', res);
         },
         (error) => {
           console.error('error', error);

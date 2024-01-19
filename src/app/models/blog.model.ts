@@ -2,10 +2,7 @@ export class Blog {
   public id: string = '';
   public title: string = '';
   public description: string = '';
-  public status: string = '';
-
-  public tag: string = '';
-
+  public link: string = '';
   public createdBy: string = '';
   public createdDate: Date = new Date();
   public updatedBy: string = '';
@@ -18,12 +15,9 @@ export class CreateBlogDTO extends Blog {
 }
 export class UpdateBlogDTO {
   public title: string = '';
-  public story: string = '';
-  public director: string = '';
-  public mainCast: string [] = [];
-  public language: string = '';
-  public awards: string [] = [];
-  public status: string = '';
+  public description: string = '';
+  public link: string = '';
+  public createdby: string = '';
 }
 export class UpdateBlogWithFileDTO extends UpdateBlogDTO {
   public imageFile!: File;

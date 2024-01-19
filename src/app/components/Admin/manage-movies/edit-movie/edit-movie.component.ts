@@ -40,7 +40,9 @@ export class EditMovieComponent implements OnInit {
     });
   }
   _movieService = inject(MovieService);
+
   ngOnInit(): void {}
+
   async getMovie(movieId: string) {
     await this._movieService.getMovie(movieId).subscribe((res) => {
       this.currentMovie = res.movie;

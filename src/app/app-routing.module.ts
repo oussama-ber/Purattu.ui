@@ -13,6 +13,7 @@ import { ManageMoviesComponent } from './components/Admin/manage-movies/movies-l
 import { EditMovieComponent } from './components/Admin/manage-movies/edit-movie/edit-movie.component';
 import { BlogsListComponent } from './components/Admin/manage-blogs/blogs-list/blogs-list.component';
 import { CreateBlogComponent } from './components/Admin/manage-blogs/create-blog/create-blog.component';
+import { EditBlogComponent } from './components/Admin/manage-blogs/edit-blog/edit-blog.component';
 
 const routes: Routes = [
   // {path: '', component: LayoutComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
 
   {path: 'manageBlogs', component: BlogsListComponent, canActivate: [AuthGuard]},
   {path: 'createBlog', component: CreateBlogComponent, canActivate: [AuthGuard]},
+  {path: 'editBlog/:blogid', component: EditBlogComponent, canActivate: [AuthGuard]},
 
 ];
 

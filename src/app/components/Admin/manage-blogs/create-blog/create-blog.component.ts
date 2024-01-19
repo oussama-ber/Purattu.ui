@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { Blog, CreateBlogDTO } from '../../../../models/blog.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../../../services/blog.service';
@@ -8,7 +8,7 @@ import { BlogService } from '../../../../services/blog.service';
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'
 })
-export class CreateBlogComponent {
+export class CreateBlogComponent implements OnInit {
   @Output() closeOuput = new EventEmitter();
   enteredTitle = '';
   enteredContent = '';
@@ -24,7 +24,7 @@ export class CreateBlogComponent {
     this.form = this.fb.group({
       title: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       description: new FormControl(null, { validators: [Validators.required] }),
-      status: new FormControl(null, { validators: [Validators.required] }),
+      link: new FormControl(null, { validators: [Validators.required] }),
       tag: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, { validators: [Validators.required] }),
     });
@@ -48,18 +48,16 @@ export class CreateBlogComponent {
   }
 
   onSaveBlog() {
-    let state = 'onSaveBlog';
-    // if (this.form.invalid) {
-    //   alert('form not valid')
-    //   return;
-    // }
+    if (this.form.invalid) {
+      alert('form not valid')
+      return;
+    }
     this.isLoading = true;
     if (this.mode === 'create') {
       let createBlogDTO = new CreateBlogDTO();
       createBlogDTO.title = this.form.value.title;
       createBlogDTO.description = this.form.value.description;
-      createBlogDTO.tag = this.form.value.tag;
-      createBlogDTO.status = this.form.value.status;
+      createBlogDTO.link = this.form.value.link;
       createBlogDTO.imageFile = this.form.value.image;
       this._blogService.insertBlog(createBlogDTO).subscribe((res) => {
         this.isLoading = false

@@ -4,12 +4,12 @@
       <h1
         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
       >
-        Create new Blog
+        Edit Blog
       </h1>
       <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p> -->
     </div>
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
-      <form [formGroup]="form" (submit)="onSaveBlog()">
+      <form [formGroup]="updateBlogform" (submit)="onSaveBlog()">
         <div class="text-center">
           <button
             type="button"
@@ -25,9 +25,9 @@
             style="display: none"
           />
         </div>
-        @if (imagePreview !== '' && imagePreview && form.get('image')?.valid) {
+        @if (imagePreview !== '' && imagePreview && updateBlogform.get('imagePath')?.valid) {
         <div class="image-preview">
-          <img [src]="imagePreview" [alt]="form.value.title" />
+          <img [src]="imagePreview" [alt]="updateBlogform.value.title" />
         </div>
         }
         <!-- <div class="text-center">
@@ -121,7 +121,7 @@
               type="submit"
               class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             >
-              ADD Blog
+              Update Blog
             </button>
           </div>
         </div>
