@@ -14,6 +14,8 @@ import { EditMovieComponent } from './components/Admin/manage-movies/edit-movie/
 import { BlogsListComponent } from './components/Admin/manage-blogs/blogs-list/blogs-list.component';
 import { CreateBlogComponent } from './components/Admin/manage-blogs/create-blog/create-blog.component';
 import { EditBlogComponent } from './components/Admin/manage-blogs/edit-blog/edit-blog.component';
+import { ServicesComponent } from './components/services/services.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 const routes: Routes = [
   // {path: '', component: LayoutComponent},
@@ -21,10 +23,12 @@ const routes: Routes = [
   {path: 'projects', component: MoviesListComponent},
   {path: 'blog', component: BlogsComponent},
   {path: 'about', component: AboutUsComponent},
+  {path: 'services', component: ServicesComponent},
 
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignupComponent},
 
+  {path: 'detail', component: MovieDetailsComponent},
   {path: 'manageMovies', component: ManageMoviesComponent, canActivate: [AuthGuard]},
   {path: 'createMovie', component: CreateMovieComponent, canActivate: [AuthGuard]},
   {path: 'editMovie/:movieid', component: EditMovieComponent, canActivate: [AuthGuard]},
