@@ -8,6 +8,8 @@ import { Movie } from '../../models/movie.model';
   styleUrl: './movies-list.component.scss',
 })
 export class MoviesListComponent implements OnInit {
+  activeButton: string ='';
+  activeTab:string='Released';
   constructor() {}
   images = [
     { path: 'https://source.unsplash.com/800x600/?nature' },
@@ -38,6 +40,7 @@ export class MoviesListComponent implements OnInit {
     );
   }
   uploadfile(file: any) {}
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
@@ -57,5 +60,15 @@ export class MoviesListComponent implements OnInit {
         }
       );
     }
+  }
+  clicked(activeButton: string): void {
+    if (this.activeTab === activeButton) {
+      // If the same button is clicked again, deactivate it
+      this.activeTab = '';
+    } else {
+      this.activeTab = activeButton;
+    }
+
+    console.log(this.activeTab);
   }
 }

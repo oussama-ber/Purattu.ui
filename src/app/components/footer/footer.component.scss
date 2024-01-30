@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+.padding-fix{
+    padding-bottom: 2rem;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 25px;
+}
+.width-style{
+    width: 100%;
+}
+.footer-header-title{
+    color: #FFF;
+font-family: Roboto;
+font-size: 35px;
+font-style: normal;
+font-weight: 600;
+line-height: 41.574px; /* 69.291% */
+}
+.sub-title{
+    color: #FFF;
+font-family: Roboto;
+font-size: 17px;
+font-style: normal;
+font-weight: 700;
+line-height: 19.2px; /* 80% */
+}
+.sub-content{
+    color: #FFBA08;
+font-family: Roboto;
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: 34px; /* 141.667% */
+}
+.navv{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}

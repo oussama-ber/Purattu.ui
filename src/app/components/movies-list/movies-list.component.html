@@ -1,4 +1,4 @@
-<section class="text-gray-600 body-font">
+<!-- <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
       @if(fetchedMoviesIsfetched){ @for (movie of fetchedMovies; track movie.id)
@@ -10,14 +10,108 @@
             [src]="movie.imagePath"
             alt="content"
           />
-          <!-- <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3> -->
           <h2 class="text-lg text-gray-900 font-medium title-font mb-4">
             {{ movie.title }}
           </h2>
-          <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
         </div>
       </div>
       } @empty { Empty list of movies } } @else { Loading movies }
     </div>
   </div>
+</section> -->
+<section
+  class="py-10 bg-w sm:py-16 lg:py-24 z-40 relative bg-yellow cont-style"
+>
+  <div class="container mx-auto" *ngIf="activeTab === 'Released'">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
+      <a href="#" [routerLink]="['/detail']" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m1.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m2.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m3.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m4.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="container mx-auto" *ngIf="activeTab === 'In Devlopment'">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m3.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m4.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="container mx-auto" *ngIf="activeTab === 'Coming Soon'">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
+      <a href="#" class="shadow-2xl relative">
+        <div
+          class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
+        >
+          <img
+            src="../../../assets/images/m4.png"
+            class="w-full z-0 h-full object-fill example"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="button-wrapper">
+    <button (click)="clicked('Released')" class="btn-movie">Released</button>
+    <button (click)="clicked('Coming Soon')" class="btn-movie">
+      Coming Soon
+    </button>
+    <button (click)="clicked('In Devlopment')" class="btn-movie">
+      In Devlopment
+    </button>
+  </div>
 </section>
+<section class="py-10 bg-w sm:py-16 lg:py-24 z-40 relative bg-yellow"></section>
