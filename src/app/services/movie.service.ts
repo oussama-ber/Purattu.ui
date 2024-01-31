@@ -25,8 +25,10 @@ export class MovieService {
   getCountries() {
     return this.http.get<country[]>(this.courtriesUrl);
   }
+  // getAllMovies(movieTag: string): Observable<any> {
   getAllMovies(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + '/movies');
+    // return this.http.get<any>(this.baseUrl + `/movies?tag=${movieTag}`);
+    return this.http.get<any>(this.baseUrl + `/movies`);
   }
   getMovie(movieId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies/${movieId}`);

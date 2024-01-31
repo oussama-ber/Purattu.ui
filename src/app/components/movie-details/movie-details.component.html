@@ -11,15 +11,10 @@
     <div class="flex-row">
       <div class="content-wraperrr">
         <h2 class="title-span">Story</h2>
-        <span class="content-span"
-          >When a young Iraqi rubbish picker rescues an American sex doll from
-          the Baghdad dumps, he crosses into a perilous red zone, where friends
-          become enemies and nothing is certain in an explosive mix of love, war
-          and madness.</span
-        >
+        <span class="content-span">{{currentMovie.story}}</span>
       </div>
     </div>
-    <div class="flex-row space-itemsss">
+    <!-- <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">Director</h2>
         <span class="content-span">AHMED YASSIN AL- DARADJI</span>
@@ -30,64 +25,61 @@
           >Mohamed Hefzy, Daniel Ziskind, Ahmed Yassin</span
         >
       </div>
-    </div>
+    </div> -->
     <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">Director</h2>
-        <span class="content-span">AHMED YASSIN AL- DARADJI</span>
+        <span class="content-span">{{currentMovie.director}}</span>
       </div>
       <div class="item-wraperrr">
         <h2 class="title-span">Co Producer</h2>
-        <span class="content-span"
-          >Mohamed Hefzy, Daniel Ziskind, Ahmed Yassin</span
-        >
+        <span class="content-span">{{currentMovie.coProducer.join(', ')}}</span>
       </div>
     </div>
     <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">Writer</h2>
         <span class="content-span"
-          >Ahmed Yassin Al-Daradji and Margaret Glover</span
+          >{{currentMovie.writer}}</span
         >
       </div>
       <div class="item-wraperrr">
         <h2 class="title-span">Associate Producer</h2>
-        <span class="content-span">Maytham Jbara</span>
+        <span class="content-span">{{currentMovie.associateProducer.join(', ')}}</span>
       </div>
     </div>
     <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">Cast</h2>
-        <span class="content-span"
-          >Wissam Diyaa, Jawad Al Shakarji, Hussain Muhammad Jalil, Akram Mazen
-          Ali</span
-        >
+        <span class="content-span">
+          {{casts.join(', ')}}
+          <!-- {{currentMovie.cast.join(',  ')}} -->
+          </span>
       </div>
       <div class="item-wraperrr">
         <h2 class="title-span">Countries of origin</h2>
-        <span class="content-span"
-          >iraq, Palestine, Egypt, UK, Saudi Arabia</span
+        <span class="content-span">{{currentMovie.contriesOfOrigin.join(', ')}}</span
         >
       </div>
     </div>
     <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">DOP</h2>
-        <span class="content-span">Duraid Munajim</span>
+        <span class="content-span">{{currentMovie.dop}}</span>
       </div>
       <div class="item-wraperrr">
         <h2 class="title-span">Release date</h2>
-        <span class="content-span">2022</span>
+        <span class="content-span">{{currentMovie.releaseDate}}</span>
       </div>
     </div>
     <div class="flex-row space-itemsss">
       <div class="item-wraperrr">
         <h2 class="title-span">Music</h2>
-        <span class="content-span">Suad Bushnaq</span>
+        <span class="content-span">{{currentMovie.music}}</span>
       </div>
       <div class="item-wraperrr">
         <h2 class="title-span">Running time</h2>
-        <span class="content-span">117 min</span>
+        <span class="content-span">{{currentMovie.runningTime}} min</span>
       </div>
     </div>
     <div class="flex-row style-layout">

@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignupComponent},
 
-  {path: 'detail', component: MovieDetailsComponent},
+  {path: 'detail/:movieid', component: MovieDetailsComponent},
   {path: 'manageMovies', component: ManageMoviesComponent, canActivate: [AuthGuard]},
   {path: 'createMovie', component: CreateMovieComponent, canActivate: [AuthGuard]},
   {path: 'editMovie/:movieid', component: EditMovieComponent, canActivate: [AuthGuard]},

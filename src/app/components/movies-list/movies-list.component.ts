@@ -22,11 +22,14 @@ export class MoviesListComponent implements OnInit {
   fetchedMovies: Movie[] = [];
   fetchedMoviesIsfetched: boolean = false;
   fileName: string = '';
+  movieTag: string = "";
   //#endregion Variables
   ngOnInit(): void {
     this.getAllMovies();
   }
+  // getAllMovies(movieTagInput: string) {
   getAllMovies() {
+    // this._movieService.getAllMovies(movieTagInput).subscribe(
     this._movieService.getAllMovies().subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
@@ -69,6 +72,6 @@ export class MoviesListComponent implements OnInit {
       this.activeTab = activeButton;
     }
 
-    console.log(this.activeTab);
+    this.getAllMovies();
   }
 }
