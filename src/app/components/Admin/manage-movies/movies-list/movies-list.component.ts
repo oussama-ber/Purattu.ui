@@ -28,12 +28,10 @@ export class ManageMoviesComponent {
     this.getAllMovies();
   }
   getAllMovies() {
-    this._movieService.getAllMovies().subscribe(
+    this._movieService.getAllMovies("Released").subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
-        // this.fetchedMovies = [];
         this.fetchedMoviesIsfetched = true;
-        // this.fetchedMoviesIsfetched = false;
       },
       (error) => {
         this.fetchedMovies = [];
@@ -42,26 +40,6 @@ export class ManageMoviesComponent {
     );
   }
   uploadfile(file: any) {}
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('file', file, file.name);
-
-      const upload$ = this._movieService.uploadfile(formData).subscribe(
-        (res) => {
-          // console.log('res', res);
-        },
-        (error) => {
-          console.error('error', error);
-        }
-      );
-    }
-  }
   onEdit(movieId: string){
     this._router.navigate([`/editMovie/${movieId}`]);
   }

@@ -13,31 +13,23 @@ import {
   UpdateMovieWithFileDTO,
 } from '../models/movie.model';
 import { country } from '../models/shared.models';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
   constructor(private http: HttpClient, private router: Router) {}
-  // baseUrl: string = "https://reservation-api-0va0.onrender.com";
-  baseUrl: string = 'http://localhost:3000';
+  baseUrl: string = environment.ApiBaseUrl;
   courtriesUrl: string = 'assets/countries.json';
   getCountries() {
     return this.http.get<country[]>(this.courtriesUrl);
   }
-  getAllMovies(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + '/movies');
+  getAllMovies(movieTag: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + `/movies?movieStatus=${movieTag}`);
   }
   getMovie(movieId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies/${movieId}`);
-  }
-  uploadfile(file: any): Observable<any> {
-    // const headers = new HttpHeaders({
-    //   'Content-Type': ,
-    // });
-    return this.http
-      .post<any>(this.baseUrl + '/movies/uploadfiletest', file)
-      .pipe(catchError(this.handleError));
   }
   insertMovie(createMovieDto: CreateMovieDTO): Observable<any> {
     const MovieData = new FormData();
@@ -90,11 +82,9 @@ export class MovieService {
     MovieData.append('producer', createMovieDto.producer.toString());
     // MovieData.append('awards', createMovieDto.awards.toString());
     MovieData.append('status', createMovieDto.status);
-    MovieData.append(
-      'file',
-      createMovieDto.imageFile,
-      createMovieDto.imageFile.name
-    );
+    if(createMovieDto.imageFile){
+      MovieData.append('file', createMovieDto.imageFile, createMovieDto.imageFile.name);
+    }
     return this.http
       .patch<any>(this.baseUrl + `/movies/${movieId}`, MovieData)
       .pipe(

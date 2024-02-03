@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Blog, CreateBlogDTO } from '../../../../models/blog.model';
+import { Blog, CreateBlogDTO, UpdateBlogWithFileDTO } from '../../../../models/blog.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../../../services/blog.service';
 import { ActivatedRoute } from '@angular/router';
@@ -18,12 +18,10 @@ export class EditBlogComponent  implements OnInit{
   isLoading = false;
   public updateBlogform: FormGroup;
   imagePreview: string | undefined;
-  private mode = 'create';
   private blogId: string = '';
   private currentBlogId: string = '';
   currentBlog: Blog = new Blog();
   public blogStatusOptions = ['Draft','Published']
-  // public blogStatusOptions = ['Draft','Published']
   constructor(private route: ActivatedRoute,private fb: FormBuilder) {
     this.routeSub = this.route.params.subscribe(async (params) => {
       this.currentBlogId = params['blogid'];
@@ -34,11 +32,11 @@ export class EditBlogComponent  implements OnInit{
       description: new FormControl(null, { validators: [Validators.required] }),
       link: new FormControl(null, { validators: [Validators.required] }),
       imagePath: new FormControl(null, { validators: [Validators.required] }),
+      image: new FormControl(null),
     });
   }
   _blogService= inject(BlogService);
   ngOnInit() {
-    this.mode = 'edit';
     this.blogId = '';
   }
   async getBlog(blogId: string) {
@@ -54,9 +52,9 @@ export class EditBlogComponent  implements OnInit{
     this.updateBlogform.setValue({
       title: currentblog.title,
       description: currentblog.description,
-      // link: currentblog.link,
-      link: '',
+      link: currentblog.link,
       imagePath: currentblog.imagePath,
+      image: null
     });
   }
   onImagePicked(event: any) {
@@ -70,25 +68,16 @@ export class EditBlogComponent  implements OnInit{
     reader.readAsDataURL(file);
   }
 
-  onSaveBlog() {
-    let state = 'onSaveBlog';
-    // if (this.updateBlogform.invalid) {
-    //   alert('form not valid')
-    //   return;
-    // }
+  onUpdateBlog() {
     this.isLoading = true;
-    if (this.mode === 'create') {
-      let createBlogDTO = new CreateBlogDTO();
-      createBlogDTO.title = this.updateBlogform.value.title;
-      createBlogDTO.description = this.updateBlogform.value.description;
-      createBlogDTO.link = this.updateBlogform.value.status;
-      createBlogDTO.imageFile = this.updateBlogform.value.image;
-      this._blogService.insertBlog(createBlogDTO).subscribe((res) => {
-        this.isLoading = false
-      });
-    } else {
-
-    }
+    let createBlogDTO = new UpdateBlogWithFileDTO();
+    createBlogDTO.title = this.updateBlogform.value.title;
+    createBlogDTO.description = this.updateBlogform.value.description;
+    createBlogDTO.link = this.updateBlogform.value.link;
+    createBlogDTO.imageFile = this.updateBlogform.value.image;
+    this._blogService.updateBlog(this.currentBlogId, createBlogDTO).subscribe((res) => {
+      this.isLoading = false
+    });
 
     this.updateBlogform.reset();
   }

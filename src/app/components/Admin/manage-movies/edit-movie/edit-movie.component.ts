@@ -102,13 +102,14 @@ export class EditMovieComponent implements OnInit {
       awards: new FormControl('', { validators: [Validators.required] }),
       status: new FormControl('', { validators: [Validators.required] }),
       imagePath: new FormControl(this.currentMovie.imagePath),
+      image: new FormControl(null),
     });
   }
   // click listener
   onImagePicked(event: any) {
     const file = (File = event.target.files[0]);
-    this.updateMovieform.patchValue({ imagePath: file });
-    this.updateMovieform.get('imagePath')?.updateValueAndValidity();
+    this.updateMovieform.patchValue({ image: file });
+    this.updateMovieform.get('image')?.updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
@@ -132,7 +133,7 @@ export class EditMovieComponent implements OnInit {
     movietoUpdate.producer = this.updateMovieform.value.runningTime;
     movietoUpdate.awards = this.awards;
     movietoUpdate.status = this.updateMovieform.value.status;
-    movietoUpdate.imageFile = this.updateMovieform.value.imagePath;
+    movietoUpdate.imageFile = this.updateMovieform.value.image;
     this._movieService.updateMovie(this.currentMovieId ,movietoUpdate).subscribe(res=>{
       this.onResetArrays();
     })

@@ -43,7 +43,7 @@ export class AuthService {
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
           this.saveAuthData(this.token);
-          this.router.navigate(['/createMovie/']);
+          this.router.navigate(['/manageMovies/']);
         }
       },
       (error) => {

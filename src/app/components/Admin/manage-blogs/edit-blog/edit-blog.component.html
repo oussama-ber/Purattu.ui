@@ -9,7 +9,7 @@
       <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p> -->
     </div>
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
-      <form [formGroup]="updateBlogform" (submit)="onSaveBlog()">
+      <form [formGroup]="updateBlogform" (submit)="onUpdateBlog()">
         <div class="text-center">
           <button
             type="button"
@@ -53,24 +53,6 @@
               />
             </div>
           </div>
-          <!-- Tag -->
-          <!-- <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="tag" class="leading-7 text-sm text-gray-600">
-                Tag
-              </label>
-              <select
-                id="tag"
-                name="tag"
-                formControlName="tag"
-                placeholder="place tag ..."
-                >
-                @for ( blogTag of blogTabOptions; track $index) {
-                <option value="blogTag">{{ blogTag }}</option>
-                }
-              </select>
-            </div>
-          </div> -->
           <!-- description -->
           <div class="p-2 w-full">
             <div class="relative">
@@ -85,22 +67,6 @@
             />
             </div>
           </div>
-          <!-- Language -->
-          <!-- <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="language" class="leading-7 text-sm text-gray-600"
-                >Language</label
-              >
-              <input
-                type="text"
-                formControlName="language"
-                placeholder="place language ..."
-                id="language"
-                name="language"
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-          </div> -->
           <!-- Link -->
           <div class="p-2 w-1/2">
             <div class="relative">
