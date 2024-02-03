@@ -22,20 +22,16 @@ export class MoviesListComponent implements OnInit {
   fetchedMovies: Movie[] = [];
   fetchedMoviesIsfetched: boolean = false;
   fileName: string = '';
-  movieTag: string = "";
+  movieStatus: string = "Released";
   //#endregion Variables
   ngOnInit(): void {
-    this.getAllMovies();
+    this.getAllMovies(this.movieStatus);
   }
-  // getAllMovies(movieTagInput: string) {
-  getAllMovies() {
-    // this._movieService.getAllMovies(movieTagInput).subscribe(
-    this._movieService.getAllMovies().subscribe(
+  getAllMovies(movieStatus: string) {
+    this._movieService.getAllMovies(movieStatus).subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
-        // this.fetchedMovies = [];
         this.fetchedMoviesIsfetched = true;
-        // this.fetchedMoviesIsfetched = false;
       },
       (error) => {
         console.error('error', error);
@@ -43,35 +39,7 @@ export class MoviesListComponent implements OnInit {
     );
   }
   uploadfile(file: any) {}
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('file', file, file.name);
-
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-      const upload$ = this._movieService.uploadfile(formData).subscribe(
-        (res) => {
-        },
-        (error) => {
-          console.error('error', error);
-        }
-      );
-    }
-  }
-  clicked(activeButton: string): void {
-    if (this.activeTab === activeButton) {
-      // If the same button is clicked again, deactivate it
-      this.activeTab = '';
-    } else {
-      this.activeTab = activeButton;
-    }
-
-    this.getAllMovies();
+  clicked(filterBy: string): void {
+    this.getAllMovies(filterBy);
   }
 }

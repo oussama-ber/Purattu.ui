@@ -18,14 +18,12 @@ export class CreateBlogComponent implements OnInit {
   imagePreview: string | undefined;
   private mode = 'create';
   private blogId: string = '';
-  public blogTabOptions = ['Facebook','Instagram']
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       title: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       description: new FormControl(null, { validators: [Validators.required] }),
       link: new FormControl(null, { validators: [Validators.required] }),
-      tag: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, { validators: [Validators.required] }),
     });
   }

@@ -1,72 +1,18 @@
-<!-- <div class="text-gray-600 body-font">
-  <div
-    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
-  >
-    <a
-      class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-        ></path>
-      </svg>
-      <span class="ml-3 text-xl">Purattu</span>
-    </a>
-    <nav
-      class="md:ml-auto flex flex-wrap items-center text-base justify-center"
-    >
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/projects']"
-        >Projects</a
-      >
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/blog']">Blog</a>
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/services']"
-        >Services</a
-      >
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/about']">About</a>
-      @if (userIsAuthenticated) {
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/manageMovies']"
-        >Manage Movies</a
-      >
-      <a class="mr-5 hover:text-gray-900" [routerLink]="['/manageBlogs']"
-        >Manage Blogs</a
-      >
-      <a class="mr-5 hover:text-gray-900" (click)="onLogOut()">LogOut</a>
-      }
-    </nav>
-  </div>
-</div> -->
-
 <div class="text-gray-600 body-font header-display bg-yellow">
-  <div
-    class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center container-wrapper bg-style"
-  >
-    <a
-      class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 logo-wrapper"
-    >
+  <div class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center container-wrapper bg-style">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 logo-wrapper" [routerLink]="['/']">
       <img src="../../../assets/images/logo.png" alt="logo" />
     </a>
-    <nav
-      class="md:ml-auto flex flex-wrap items-center text-base justify-center nav-wrapper"
-    >
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/projects']"
-        >FILMS</a
-      >
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blog']"
-        >BLOG</a
-      >
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center nav-wrapper">
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/movies']">FILMS</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blogs']">BLOG</a>
       <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/services']">SERVICES</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']"
-        >ABOUT</a
-      >
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']">ABOUT</a>
+      @if (userIsAuthenticated) {
+        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageMovies']">Manage Movies</a>
+        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageBlogs']">Manage Blogs</a>
+        <a class="mr-5 hover:text-gray-900 nav-text logout-styles" (click)="onLogOut()">LogOut</a>
+        }
     </nav>
   </div>
 </div>

@@ -7,15 +7,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { CreateBlogDTO, UpdateBlogWithFileDTO } from '../models/blog.model';
-// import { CreateMovieDTO, Movie, UpdateMovieDTO, UpdateMovieWithFileDTO } from '../models/movie.model';
-
+import { environment } from '../../environments/environment.development';
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
   constructor(private http: HttpClient, private router: Router) {}
-  // baseUrl: string = "https://reservation-api-0va0.onrender.com";
-  baseUrl: string = 'http://localhost:3000';
+  baseUrl: string = environment.ApiBaseUrl;
 
   getAllBlogs(): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/blogs');
@@ -39,15 +37,18 @@ export class BlogService {
         })
       );
   }
-  updateMovie(movieId: string, updateBlogDto: UpdateBlogWithFileDTO): Observable<any> {
+  updateBlog(movieId: string, updateBlogDto: UpdateBlogWithFileDTO): Observable<any> {
     const blogData = new FormData();
     blogData.append('title', updateBlogDto.title);
     blogData.append('description', updateBlogDto.description);
     blogData.append('link', updateBlogDto.link);
     blogData.append('createdby', updateBlogDto.createdby);
-    blogData.append('file', updateBlogDto.imageFile, updateBlogDto.imageFile.name);
+    if(updateBlogDto.imageFile)
+    {
+      blogData.append('file', updateBlogDto.imageFile, updateBlogDto.imageFile.name);
+    }
     return this.http
-      .patch<any>(this.baseUrl + `/movies/${movieId}`, blogData)
+      .patch<any>(this.baseUrl + `/blogs/${movieId}`, blogData)
       .pipe(
         catchError((error) => {
           console.error('Error in updateBlog:', error);
@@ -65,19 +66,4 @@ export class BlogService {
         })
       );
   }
-
-  // private handleError(error: HttpErrorResponse) {
-  //   if (error.error instanceof ErrorEvent) {
-  //     // A client-side error occurred.
-  //     console.error('An error occurred:', error.error.message);
-  //   } else {
-  //     // The backend returned an unsuccessful response code.
-  //     console.error(
-  //       `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-  //     );
-  //   }
-
-  //   // Return an observable with a user-facing error message.
-  //   return throwError('Something bad happened; please try again later.');
-  // }
 }

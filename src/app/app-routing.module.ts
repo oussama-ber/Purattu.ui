@@ -20,8 +20,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 const routes: Routes = [
   // {path: '', component: LayoutComponent},
   {path: '', component: LandingpageComponent},
-  {path: 'projects', component: MoviesListComponent},
-  {path: 'blog', component: BlogsComponent},
+  {path: 'movies', component: MoviesListComponent},
+  {path: 'blogs', component: BlogsComponent},
   {path: 'about', component: AboutUsComponent},
   {path: 'services', component: ServicesComponent},
 
