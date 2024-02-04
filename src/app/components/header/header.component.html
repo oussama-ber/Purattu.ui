@@ -4,13 +4,16 @@
       <img src="../../../assets/images/logo.png" alt="logo" />
     </a>
     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center nav-wrapper">
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/movies']">FILMS</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blogs']">BLOG</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/services']">SERVICES</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']">ABOUT</a>
+      <a
+      class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/movies']"
+      [ngClass]="{'active-nav': currentRoute == '/movies'}"
+      >FILMS</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blogs']" [ngClass]="{'active-nav': currentRoute == '/blogs'}">BLOG</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/services']" [ngClass]="{'active-nav': currentRoute == '/services'}">SERVICES</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']" [ngClass]="{'active-nav': currentRoute == '/about'}">ABOUT</a>
       @if (userIsAuthenticated) {
-        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageMovies']">Manage Movies</a>
-        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageBlogs']">Manage Blogs</a>
+        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageMovies']" [ngClass]="{'active-nav': currentRoute == '/manageMovies'}">Manage Movies</a>
+        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageBlogs']" [ngClass]="{'active-nav': currentRoute == '/manageBlogs'}">Manage Blogs</a>
         <a class="mr-5 hover:text-gray-900 nav-text logout-styles" (click)="onLogOut()">LogOut</a>
         }
     </nav>
