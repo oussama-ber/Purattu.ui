@@ -7,13 +7,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
 import { CreateMovieDTO, Movie } from '../models/movie.model';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   //#region
-  baseUrl: string = 'http://localhost:3000';
+  baseUrl: string = environment.ApiBaseUrl;
   isAuthenticated: boolean = false;
   private authStatusListener = new Subject<boolean>();
   private token: string = '';
