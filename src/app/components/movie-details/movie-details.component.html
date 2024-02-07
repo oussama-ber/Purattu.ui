@@ -121,17 +121,14 @@
         <span class="title-span">More Projects</span>
         <div class="container">
           <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
-            <a href="#" [routerLink]="['/detail']" class="shadow-2xl relative">
-              <div
-                class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
-              >
-                <img
-                  src="../../../assets/images/m1.png"
-                  class="w-full z-0 h-full object-fill example"
-                />
-              </div>
-            </a>
-            <a href="#" class="shadow-2xl relative">
+            @for (lastestmovie of lastestMovies; track $index) {
+              <a [routerLink]="['/detail', lastestmovie._id]" class="shadow-2xl relative">
+                <div class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group">
+                  <img [src]="lastestmovie.imageUrl" alt="movie's title" class="w-full z-0 h-full object-fill example"/>
+                </div>
+              </a>
+            }
+            <!-- <a href="#" class="shadow-2xl relative">
               <div
                 class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
               >
@@ -160,7 +157,7 @@
                   class="w-full z-0 h-full object-fill example"
                 />
               </div>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 export class Movie {
-  public id: string = '';
+  public _id: string = '';
   public title: string = '';
   public story: string = '';
   public director: string = '';
@@ -17,6 +17,7 @@ export class Movie {
   public awards: string [] = [];
   public status: string = '';
   public imagePath: string = '';
+  public imageUrl: string = '';
 }
 export class CreateMovieDTO extends Movie {
   public imageFile!: File;

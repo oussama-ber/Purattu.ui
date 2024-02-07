@@ -21,6 +21,8 @@ public associateProducers: string [] = [];
 public casts: string [] = [];
 public contriesOfOrigins: string [] = [];
 public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
+public lastestMovies: Movie[] = [];
+public lastestMoviesIsLoaded: boolean = false;
 //#endregion Variables
   constructor(private route: ActivatedRoute) {
     this.routeSub = this.route.params.subscribe(async (params) => {
@@ -29,7 +31,8 @@ public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
     });
   }
   _movieService = inject(MovieService);
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getLastestMovies();
     // throw new Error('Method not implemented.');
   }
   async getMovie(movieId: string) {
@@ -42,6 +45,12 @@ public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
       this.casts = this.currentMovie.cast;
       this.producers = this.currentMovie.producer;
     });
+  }
+  async getLastestMovies(){
+    this._movieService.fetchLastestMovies().subscribe((res)=>{
+      this.lastestMovies = res.movies;
+      this.lastestMoviesIsLoaded = true;
+    })
   }
 
 }
