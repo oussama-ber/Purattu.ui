@@ -264,7 +264,7 @@ $animationSpeed: 40s;
 }
 
 .slider {
-	height: 100px;
+	height: 150px;
 	margin: auto;
 	overflow:hidden;
 	position: relative;
@@ -277,15 +277,22 @@ $animationSpeed: 40s;
 		width: calc(250px * 14);
 	}
 	.slide {
-		height: 100px;
+		height: 150px;
 		width: 250px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 	}
 }
 .bg-style{
 
   background:  #032B43 ;
 }
-
+.vid-wrapper{
+  height:100%;
+  padding:10px;
+}
 @keyframes moveTextRight {
   0% {
     transform: translateX(-100%);
