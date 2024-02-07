@@ -5,7 +5,7 @@
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
       @if(fetchedMoviesIsfetched){ @for (movie of fetchedMovies; track movie.id)
         {
-          <a [routerLink]="['/detail', movie.id]" class="shadow-2xl relative">
+          <a  [routerLink]="['/detail', movie.id]" class="shadow-2xl relative immg">
             <div
               class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
             >
