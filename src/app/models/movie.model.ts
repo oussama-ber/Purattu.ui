@@ -17,6 +17,7 @@ export class Movie {
   public awards: string [] = [];
   public status: string = '';
   public imagePath: string = '';
+  public imageUrl: string = '';
 }
 export class CreateMovieDTO extends Movie {
   public imageFile!: File;

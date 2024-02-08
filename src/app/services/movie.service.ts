@@ -25,6 +25,9 @@ export class MovieService {
   getCountries() {
     return this.http.get<country[]>(this.courtriesUrl);
   }
+  fetchLastestMovies(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + `/movies/lastestMovies`);
+  }
   getAllMovies(movieTag: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies?movieStatus=${movieTag}`);
   }

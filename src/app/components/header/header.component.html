@@ -16,6 +16,9 @@
         <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageBlogs']" [ngClass]="{'active-nav': currentRoute == '/manageBlogs'}">Manage Blogs</a>
         <a class="mr-5 hover:text-gray-900 nav-text logout-styles" (click)="onLogOut()">LogOut</a>
         }
+      @if (!userIsAuthenticated) {
+        <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/login']" [ngClass]="{'active-nav': currentRoute == '/manageMovies'}">Login</a>
+        }
     </nav>
   </div>
 </div>

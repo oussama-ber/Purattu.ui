@@ -40,6 +40,7 @@ export class MoviesListComponent implements OnInit {
   }
   uploadfile(file: any) {}
   clicked(filterBy: string): void {
+    this.movieStatus = filterBy,
     this.getAllMovies(filterBy);
   }
 }
