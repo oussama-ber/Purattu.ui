@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+declare let AOS: any;
 
 @Component({
   selector: 'app-services',
@@ -17,12 +18,13 @@ export class ServicesComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    AOS.init();
     // Calculate item height, including margin-bottom
     if (this.carousel) {
-      this.itemHeight = this.carousel.nativeElement.offsetHeight + 15;
+      this.itemHeight = this.carousel.nativeElement.offsetHeight + 100;
     }
 
-    setInterval(() => this.moveNext(), 3000);
+    setInterval(() => this.moveNext(), 1000);
   }
 
   moveNext() {
