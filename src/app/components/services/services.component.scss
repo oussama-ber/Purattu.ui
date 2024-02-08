@@ -12,7 +12,7 @@ height: 87vh;
   flex-direction: row;
   width: 100%;
   margin: auto;
-  div {
+  div.left-container {
       margin-right: 40px;
       padding-top: 0;
     }
@@ -236,4 +236,39 @@ $animationSpeed: 40s;
   text-align: center;
   box-sizing: border-box;
   margin-bottom: 15px;
+}
+.button-wrapper{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  background: #032B43;
+  width: max-content;
+  padding: 6px;
+  margin: auto auto 30px 30px;
+}
+.btn-service{
+  border-radius: 10px;
+  display: flex;
+  padding: 6px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #FBAB00;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+button.btn-service:active{
+  background-color: #FBAB00 ;
+  color: white;
+}
+.selected-btn-service{
+  background-color: #FBAB00 ;
+  color: #032B43;
+}
+.service-layout-styles{
+  justify-content: space-between;
 }

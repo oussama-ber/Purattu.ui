@@ -203,11 +203,11 @@ $animationSpeed: 40s;
 }
 .button-wrapper{
   display: inline-flex;
-padding: 6px 4px;
-align-items: center;
-gap: 6px;
-border-radius: 10px;
-background: #032B43;
+  padding: 6px 4px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  background: #032B43;
 }
 .btn-movie{
   border-radius: 10px;
@@ -222,11 +222,14 @@ background: #032B43;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
 }
 button.btn-movie:active{
   background-color: #FBAB00 ;
   color: white;
+}
+.selected-btn-movie{
+  background-color: #FBAB00 ;
+  color: #032B43;
 }
 .img-wrapss{
   display: flex;

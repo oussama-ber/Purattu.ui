@@ -7,7 +7,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class ServicesComponent implements OnInit{
   @ViewChild('carousel') carousel: ElementRef<HTMLDivElement> | undefined;
-
+  country: string = "canada";
   itemHeight: number;
   currentItem: number;
 
@@ -40,5 +40,8 @@ export class ServicesComponent implements OnInit{
         }
       }, 500);
     }
+  }
+  swithCountry(){
+    this.country = this.country == 'canada' ? 'iraq' : 'canada';
   }
 }
