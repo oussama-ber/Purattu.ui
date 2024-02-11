@@ -1,40 +1,29 @@
 <div>
   <div class="carousel">
     <ul class="slides">
-      <input type="radio" name="radio-buttons" id="img-1" checked />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 19.png" />
-          <div class="text-overlay">
-            <h2>Qadr</h2>
-            <p>
-              TRAPPED IN A ROOM, IQBAL FINDS HERSELF IN A HARROWING PREDICAMENT
-              AS HER DAUGHTER IS HELD UNDER THE WATCHFUL EYE OF AN ISIS SNIPER
-              JUST BEYOND THEIR REACH. STRUGGLING WITH DOUBT,
-            </p>
+      @for (latestMovie of latestMovies; track $index) {
+      <!-- [id]="latestMovie.id" -->
+        <input type="radio" name="radio-buttons" [id]="currentIndex" [checked]="$index == currentIndex" />
+        <li class="slide-container">
+          <div class="slide-image">
+            <img [src]="latestMovie.imagePath" />
           </div>
-        </div>
-        <div class="carousel-controls">
-          <label for="img-5" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-2" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li>
-      <input type="radio" name="radio-buttons" id="img-2" />
+          <div class="carousel-controls">
+            <!-- [for]="getPreviousIndex($index)"  -->
+            <label class="prev-slide" (click)="getPreviousIndex($index)">
+              <span>&lsaquo;</span>
+            </label>
+            <!-- [for]="getNextIndex($index)" -->
+            <label  class="next-slide" (click)="getNextIndex($index)">
+              <span>&rsaquo;</span>
+            </label>
+          </div>
+        </li>
+      }
+      <!-- <input type="radio" name="radio-buttons" id="img-2" />
       <li class="slide-container">
         <div class="slide-image">
           <img src="../../../assets/images/Frame 17.png" />
-          <div class="text-overlay">
-            <h2>BLODDY BOYS</h2>
-            <p>
-              BLOODY BOYS FOLLOWS THREE FAMILIES THROUGH THREE PARALLEL STORIES;
-              BIRGITTA WHO DECIDES TO END HER APARTMENT LEASE TO MOVE IN WITH
-              YET ANOTHER MAN, LEAVING HER SON, SIMON, WITHOUT A PLACE TO STAY.
-            </p>
-          </div>
         </div>
         <div class="carousel-controls">
           <label for="img-1" class="prev-slide">
@@ -49,14 +38,6 @@
       <li class="slide-container">
         <div class="slide-image">
           <img src="../../../assets/images/Frame 21.png" />
-          <div class="text-overlay">
-            <h2 data-aos="fade-up" data-aos-duration="3000">MOTHER IS BACK</h2>
-            <p data-aos="fade-up" data-aos-duration="3000">
-              ABDUCTED FROM HER VILLAGE IN NORTH IRAQ BY ISIS, ELLAN, A NEWLY
-              MARRIED, YOUNG YAZIDI WOMAN, IS FINALLY BEING RELEASED AFTER YEARS
-              OF CAPTIVITY.
-            </p>
-          </div>
         </div>
         <div class="carousel-controls">
           <label for="img-2" class="prev-slide">
@@ -110,7 +91,7 @@
             <span>&rsaquo;</span>
           </label>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>
@@ -267,7 +248,7 @@
             alt=""
           />
         </div>
-    
+
       </div>
     </div>
   </div>
