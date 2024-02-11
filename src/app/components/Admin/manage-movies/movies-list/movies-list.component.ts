@@ -28,7 +28,7 @@ export class ManageMoviesComponent {
     this.getAllMovies();
   }
   getAllMovies() {
-    this._movieService.getAllMovies("Released").subscribe(
+    this._movieService.fetchAllMovies().subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
         this.fetchedMoviesIsfetched = true;

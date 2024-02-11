@@ -1,40 +1,29 @@
 <div>
   <div class="carousel">
     <ul class="slides">
-      <input type="radio" name="radio-buttons" id="img-1" checked />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 19.png" />
-          <div class="text-overlay">
-            <h2>Qadr</h2>
-            <p>
-              TRAPPED IN A ROOM, IQBAL FINDS HERSELF IN A HARROWING PREDICAMENT
-              AS HER DAUGHTER IS HELD UNDER THE WATCHFUL EYE OF AN ISIS SNIPER
-              JUST BEYOND THEIR REACH. STRUGGLING WITH DOUBT,
-            </p>
+      @for (latestMovie of latestMovies; track $index) {
+      <!-- [id]="latestMovie.id" -->
+        <input type="radio" name="radio-buttons" [id]="currentIndex" [checked]="$index == currentIndex" />
+        <li class="slide-container">
+          <div class="slide-image">
+            <img [src]="latestMovie.imagePath" />
           </div>
-        </div>
-        <div class="carousel-controls">
-          <label for="img-5" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-2" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li>
-      <input type="radio" name="radio-buttons" id="img-2" />
+          <div class="carousel-controls">
+            <!-- [for]="getPreviousIndex($index)"  -->
+            <label class="prev-slide" (click)="getPreviousIndex($index)">
+              <span>&lsaquo;</span>
+            </label>
+            <!-- [for]="getNextIndex($index)" -->
+            <label  class="next-slide" (click)="getNextIndex($index)">
+              <span>&rsaquo;</span>
+            </label>
+          </div>
+        </li>
+      }
+      <!-- <input type="radio" name="radio-buttons" id="img-2" />
       <li class="slide-container">
         <div class="slide-image">
           <img src="../../../assets/images/Frame 17.png" />
-          <div class="text-overlay">
-            <h2>BLODDY BOYS</h2>
-            <p>
-              BLOODY BOYS FOLLOWS THREE FAMILIES THROUGH THREE PARALLEL STORIES;
-              BIRGITTA WHO DECIDES TO END HER APARTMENT LEASE TO MOVE IN WITH
-              YET ANOTHER MAN, LEAVING HER SON, SIMON, WITHOUT A PLACE TO STAY.
-            </p>
-          </div>
         </div>
         <div class="carousel-controls">
           <label for="img-1" class="prev-slide">
@@ -49,14 +38,6 @@
       <li class="slide-container">
         <div class="slide-image">
           <img src="../../../assets/images/Frame 21.png" />
-          <div class="text-overlay">
-            <h2>MOTHER IS BACK</h2>
-            <p>
-              ABDUCTED FROM HER VILLAGE IN NORTH IRAQ BY ISIS, ELLAN, A NEWLY
-              MARRIED, YOUNG YAZIDI WOMAN, IS FINALLY BEING RELEASED AFTER YEARS
-              OF CAPTIVITY.
-            </p>
-          </div>
         </div>
         <div class="carousel-controls">
           <label for="img-2" class="prev-slide">
@@ -72,8 +53,8 @@
         <div class="slide-image">
           <img src="../../../assets/images/Frame 23.png" />
           <div class="text-overlay">
-            <h2>Qadr</h2>
-            <p>
+            <h2 data-aos="fade-up" data-aos-duration="3000">Qadr</h2>
+            <p data-aos="fade-up" data-aos-duration="3000">
               TRAPPED IN A ROOM, IQBAL FINDS HERSELF IN A HARROWING PREDICAMENT
               AS HER DAUGHTER IS HELD UNDER THE WATCHFUL EYE OF AN ISIS SNIPER
               JUST BEYOND THEIR REACH. STRUGGLING WITH DOUBT,
@@ -94,8 +75,8 @@
         <div class="slide-image">
           <img src="../../../assets/images/Frame 25.png" />
           <div class="text-overlay">
-            <h2>THE WEEKEND THIEFS</h2>
-            <p>
+            <h2 data-aos="fade-up" data-aos-duration="3000">THE WEEKEND THIEFS</h2>
+            <p data-aos="fade-up" data-aos-duration="3000">
               WHEN GINA BECOMES THE TARGET OF A ROBBERY, SHE'S FORCED TO SPEND A
               WEEKEND WITH THE THIEF WHO BROKE INTO HER HOME, REALIZING THAT THE
               MAN MAY NOT BE WHO SHE THOUGHT HE WAS.
@@ -110,7 +91,7 @@
             <span>&rsaquo;</span>
           </label>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>
@@ -119,8 +100,8 @@
   class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-yellow py-6 sm:py-12"
 >
   <div class="w-full items-center mx-auto max-w-screen-lg">
-    <h2 class="section-title">We are Purattu film production</h2>
-    <span class="section-description"
+    <h2 class="section-title"  data-aos="fade-up" data-aos-duration="1800">We are Purattu film production</h2>
+    <span class="section-description" data-aos="fade-up" data-aos-duration="2000"
       >We are an independent film production company bridging the worlds of West
       and Middle East, with our home in Toronto and Baghdad.</span
     >
@@ -168,8 +149,8 @@
   class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-yellow py-6 sm:py-12"
 >
   <div class="w-full items-center">
-    <h2 class="partners-title">Our Partners</h2>
-    <div class="slider">
+    <h2 class="partners-title" data-aos="fade-up" data-aos-duration="1800">Our Partners</h2>
+    <div class="slider" data-aos="fade-up" data-aos-duration="2000">
       <div class="slide-track">
         <div class="slide">
           <img
@@ -267,7 +248,7 @@
             alt=""
           />
         </div>
-    
+
       </div>
     </div>
   </div>

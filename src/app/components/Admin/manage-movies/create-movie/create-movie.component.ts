@@ -24,7 +24,7 @@ export class CreateMovieComponent implements OnInit {
   imagePreview: string | undefined;
   private mode = 'create';
   private movieId: string = '';
-  public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
+  public moviesStatus: string[] = ['Released', 'Coming soon', 'In Development'];
   public coProducers: string[] = [];
   public casts: string[] = [];
   public contriesOfOrigin: string[] = [];

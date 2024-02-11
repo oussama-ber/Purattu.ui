@@ -1,16 +1,13 @@
 <div class="text-gray-600 body-font header-display bg-yellow">
-  <div class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center container-wrapper bg-style">
+  <div class="mx-auto flex flex-wrap flex-col md:flex-row items-center container-wrapper">
     <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 logo-wrapper" [routerLink]="['/']">
       <img src="../../../assets/images/logo.png" alt="logo" />
     </a>
     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center nav-wrapper">
-      <a
-      class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/movies']"
-      [ngClass]="{'active-nav': currentRoute == '/movies'}"
-      >FILMS</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blogs']" [ngClass]="{'active-nav': currentRoute == '/blogs'}">BLOG</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/services']" [ngClass]="{'active-nav': currentRoute == '/services'}">SERVICES</a>
-      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']" [ngClass]="{'active-nav': currentRoute == '/about'}">ABOUT</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/movies']" [ngClass]="{'active-nav': currentRoute == '/movies'}">Movies</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/blogs']" [ngClass]="{'active-nav': currentRoute == '/blogs'}">Blogs</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/services']" [ngClass]="{'active-nav': currentRoute == '/services'}">Services</a>
+      <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/about']" [ngClass]="{'active-nav': currentRoute == '/about'}">About</a>
       @if (userIsAuthenticated) {
         <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageMovies']" [ngClass]="{'active-nav': currentRoute == '/manageMovies'}">Manage Movies</a>
         <a class="mr-5 hover:text-gray-900 nav-text" [routerLink]="['/manageBlogs']" [ngClass]="{'active-nav': currentRoute == '/manageBlogs'}">Manage Blogs</a>

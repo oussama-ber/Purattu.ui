@@ -29,7 +29,7 @@ export class EditMovieComponent implements OnInit {
   public associateProducers: string [] = [];
   public casts: string [] = [];
   public contriesOfOrigins: string [] = [];
-  public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
+  public moviesStatus: string[] = ['Released', 'Coming soon', 'In Development'];
   //#endregion variables
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder) {
