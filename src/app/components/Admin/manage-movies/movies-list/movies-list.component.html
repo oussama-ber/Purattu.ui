@@ -4,8 +4,7 @@
       <button (click)="goToCreateMovie()" type="button" class="add-btn-style">Add +</button>
     </div>
     <div class="flex flex-wrap m-4" class="card-wrapper">
-      @if(fetchedMoviesIsfetched) { @for (movie of fetchedMovies; track
-      movie.id) {
+      @if(fetchedMoviesIsfetched) { @for (movie of fetchedMovies; track movie.id) {
       <div class="xl:w-1/4 md:w-1/2 p-1 card-style">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img
@@ -22,7 +21,7 @@
           </h2>
           <div class="buttons-wrapper">
             <button (click)="onEdit(movie.id)" class="btn-style edit-btn" >Edit</button>
-            <button (click)="onDelete(movie.id)" class="btn-style delete-btn">Delete</button>
+            <button (click)="onDelete(movie.id, movie.imagePath)" class="btn-style delete-btn">Delete</button>
           </div>
           <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
         </div>

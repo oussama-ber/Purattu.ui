@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BlogService } from '../../../../services/blog.service';
 import { Router } from '@angular/router';
 import { Blog } from '../../../../models/blog.model';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-blogs-list',
@@ -10,7 +11,7 @@ import { Blog } from '../../../../models/blog.model';
 })
 export class BlogsListComponent {
   _blogService = inject(BlogService);
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private fireStorage: AngularFireStorage) {
 
   }
   //#region Variables
@@ -36,10 +37,18 @@ export class BlogsListComponent {
   onEdit(blogId: string){
     this._router.navigate([`/editBlog/${blogId}`]);
   }
-  onDelete(blogId: string){
-    this._blogService.deleteBlog(blogId).subscribe((res)=>{
+  onDelete(blogId: string, blogPath: string){
+    this._blogService.deleteBlog(blogId).subscribe(async (res)=>{
       if(res){
-        this.getAllBlogs();
+        if(blogPath.length > 0){
+          let exsitingImageTask = await this.fireStorage.refFromURL(blogPath);
+          exsitingImageTask.delete().subscribe(async () =>  {
+            this.getAllBlogs();
+          })
+        }else{
+          this.getAllBlogs();
+        }
+
       }else{
         alert('could not delete the blog')
       }
