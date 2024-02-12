@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../../../services/movie.service';
 import { Movie, UpdateMovieDTO, UpdateMovieWithFileDTO } from '../../../../models/movie.model';
@@ -9,6 +9,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-edit-movie',
@@ -32,7 +33,7 @@ export class EditMovieComponent implements OnInit {
   public moviesStatus: string[] = ['Released', 'Coming soon', 'In Development'];
   //#endregion variables
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private fireStorage:AngularFireStorage, private router: Router) {
     this.buildForm();
     this.routeSub = this.route.params.subscribe(async (params) => {
       this.currentMovieId = params['movieid'];
@@ -41,10 +42,12 @@ export class EditMovieComponent implements OnInit {
   }
   _movieService = inject(MovieService);
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+
+  }
 
   async getMovie(movieId: string) {
-    await this._movieService.getMovie(movieId).subscribe((res) => {
+    await this._movieService.getMovie(movieId).subscribe(async (res) => {
       this.currentMovie = res.movie;
 
       this.coProducers = this.currentMovie.coProducer
@@ -54,6 +57,7 @@ export class EditMovieComponent implements OnInit {
       this.producers = this.currentMovie.producer;
 
       this.setFormValues(this.currentMovie);
+
     });
   }
   setFormValues(currentMovie: Movie) {
@@ -82,6 +86,7 @@ export class EditMovieComponent implements OnInit {
       // awards: currentMovie.awards?.toString(),
       awards: '',
       imagePath: currentMovie.imagePath,
+      image: null
     });
   }
   buildForm() {
@@ -133,9 +138,25 @@ export class EditMovieComponent implements OnInit {
     movietoUpdate.producer = this.updateMovieform.value.runningTime;
     movietoUpdate.awards = this.awards;
     movietoUpdate.status = this.updateMovieform.value.status;
-    movietoUpdate.imageFile = this.updateMovieform.value.image;
-    this._movieService.updateMovie(this.currentMovieId ,movietoUpdate).subscribe(res=>{
-      this.onResetArrays();
+    // movietoUpdate.imageFile = this.updateMovieform.value.image;
+    this._movieService.updateMovie(this.currentMovieId ,movietoUpdate).subscribe(async res=>{
+        if(this.updateMovieform.value.image != null && this.currentMovie.imagePath.length > 0 ){
+          let exsitingImageTask = await this.fireStorage.refFromURL(this.currentMovie.imagePath);
+          exsitingImageTask.delete().subscribe(async () =>  {
+              let movieImgPath = `MoviesImages/${this.updateMovieform.value.image.name}`;
+              let copyMovieImgPath = movieImgPath;
+              copyMovieImgPath = copyMovieImgPath + new Date();
+              const uploadTask = await this.fireStorage.upload(copyMovieImgPath, this.updateMovieform.value.image);
+              const url = await uploadTask.ref.getDownloadURL()
+              await this._movieService.insertMovieImage(res.updatedMovieId, url).subscribe((rs)=>{
+                this.onResetArrays();
+                this.router.navigate(['/manageMovies']);
+              });
+          });
+        }else{
+          this.onResetArrays();
+          this.router.navigate(['/manageMovies']);
+        }
     })
   }
   //#region Utiles

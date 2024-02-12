@@ -38,29 +38,24 @@ export class MovieService {
     return this.http.get<any>(this.baseUrl + `/movies/${movieId}`);
   }
   insertMovie(createMovieDto: CreateMovieDTO): Observable<any> {
-    const MovieData = new FormData();
-    MovieData.append('title', createMovieDto.title);
-    MovieData.append('story', createMovieDto.story);
-    MovieData.append('director', createMovieDto.director);
-    MovieData.append('coProducer', createMovieDto.coProducer.toString());
-    MovieData.append('writer', createMovieDto.writer);
-    MovieData.append('associateProducer', createMovieDto.associateProducer.toString());
-    MovieData.append('cast', createMovieDto.cast.toString());
-    MovieData.append('contriesOfOrigin', createMovieDto.contriesOfOrigin.toString());
-    MovieData.append('dop', createMovieDto.dop);
-    MovieData.append('releaseDate', createMovieDto.releaseDate.toString());
-    MovieData.append('music', createMovieDto.music);
-    MovieData.append('runningTime', createMovieDto.runningTime.toString());
-    MovieData.append('producer', createMovieDto.producer.toString());
-    // MovieData.append('awards', createMovieDto.awards.toString());
-    MovieData.append('status', createMovieDto.status);
-    MovieData.append(
-      'file',
-      createMovieDto.imageFile,
-      createMovieDto.imageFile.name
-    );
+    const data = {
+      title: createMovieDto.title,
+      story: createMovieDto.story,
+      director: createMovieDto.director,
+      coProducer: createMovieDto.coProducer.toString(),
+      writer: createMovieDto.writer,
+      associateProducer: createMovieDto.associateProducer.toString(),
+      cast: createMovieDto.cast.toString(),
+      contriesOfOrigin: createMovieDto.contriesOfOrigin.toString(),
+      dop: createMovieDto.dop.toString(),
+      releaseDate: createMovieDto.releaseDate,
+      music: createMovieDto.music.toString(),
+      runningTime: createMovieDto.runningTime,
+      producer: createMovieDto.producer.toString(),
+      status: createMovieDto.status,
+    }
     return this.http
-      .post<any>(this.baseUrl + '/movies/createMovie', MovieData)
+      .post<any>(this.baseUrl + '/movies/createMovie', data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertMovie:', error);
@@ -68,31 +63,42 @@ export class MovieService {
         })
       );
   }
-  updateMovie(
-    movieId: string,
-    createMovieDto: UpdateMovieWithFileDTO
-  ): Observable<any> {
+  insertMovieImage(movieId: string, imageUrl: string): Observable<any> {
     const MovieData = new FormData();
-    MovieData.append('title', createMovieDto.title);
-    MovieData.append('story', createMovieDto.story);
-    MovieData.append('director', createMovieDto.director);
-    MovieData.append('coProducer', createMovieDto.coProducer.toString());
-    MovieData.append('writer', createMovieDto.writer);
-    MovieData.append('associateProducer', createMovieDto.associateProducer.toString());
-    MovieData.append('cast', createMovieDto.cast.toString());
-    MovieData.append('contriesOfOrigin', createMovieDto.contriesOfOrigin.toString());
-    MovieData.append('dop', createMovieDto.dop);
-    MovieData.append('releaseDate', createMovieDto.releaseDate.toString());
-    MovieData.append('music', createMovieDto.music);
-    MovieData.append('runningTime', createMovieDto.runningTime.toString());
-    MovieData.append('producer', createMovieDto.producer.toString());
-    // MovieData.append('awards', createMovieDto.awards.toString());
-    MovieData.append('status', createMovieDto.status);
-    if(createMovieDto.imageFile){
-      MovieData.append('file', createMovieDto.imageFile, createMovieDto.imageFile.name);
+    MovieData.append('movieId', movieId);
+    MovieData.append('imageUrl', imageUrl);
+    const data  = {
+      movieId: movieId,
+      imageUrl : imageUrl
     }
     return this.http
-      .patch<any>(this.baseUrl + `/movies/${movieId}`, MovieData)
+      .post<any>(this.baseUrl + '/movies/insertMovieImage', data)
+      .pipe(
+        catchError((error) => {
+          console.error('Error in insertMovieImage:', error);
+          throw error; // Rethrow the error to be caught by the subscriber
+        })
+      );
+  }
+  updateMovie(movieId: string, createMovieDto: UpdateMovieWithFileDTO): Observable<any> {
+    const data = {
+      title: createMovieDto.title,
+      story: createMovieDto.story,
+      director: createMovieDto.director,
+      coProducer: createMovieDto.coProducer.toString(),
+      writer: createMovieDto.writer,
+      associateProducer: createMovieDto.associateProducer.toString(),
+      cast: createMovieDto.cast.toString(),
+      contriesOfOrigin: createMovieDto.contriesOfOrigin.toString(),
+      dop: createMovieDto.dop.toString(),
+      releaseDate: createMovieDto.releaseDate,
+      music: createMovieDto.music.toString(),
+      runningTime: createMovieDto.runningTime,
+      producer: createMovieDto.producer.toString(),
+      status: createMovieDto.status,
+    }
+    return this.http
+      .patch<any>(this.baseUrl + `/movies/${movieId}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in updateMovie:', error);

@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
-import { CreateBlogDTO, UpdateBlogWithFileDTO } from '../models/blog.model';
+import { Blog, CreateBlogDTO, UpdateBlogDTO, UpdateBlogWithFileDTO } from '../models/blog.model';
 import { environment } from '../../environments/environment.development';
 @Injectable({
   providedIn: 'root',
@@ -21,15 +21,15 @@ export class BlogService {
   getBlog(blogId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/blogs/${blogId}`);
   }
-  insertBlog(createBlogDto: CreateBlogDTO): Observable<any> {
-    const blogData = new FormData();
-    blogData.append('title', createBlogDto.title);
-    blogData.append('description', createBlogDto.description);
-    blogData.append('link', createBlogDto.link);
-    blogData.append('createdBy', createBlogDto.createdBy);
-    blogData.append('file', createBlogDto.imageFile, createBlogDto.imageFile.name);
+  insertBlog(createBlogDto: Blog): Observable<any> {
+    const data = {
+      title: createBlogDto.title,
+      description: createBlogDto.description,
+      link: createBlogDto.link,
+      createdBy: createBlogDto.createdBy,
+    }
     return this.http
-      .post<any>(this.baseUrl + '/blogs/createblog', blogData)
+      .post<any>(this.baseUrl + '/blogs/createblog', data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertMovie:', error);
@@ -37,18 +37,28 @@ export class BlogService {
         })
       );
   }
-  updateBlog(movieId: string, updateBlogDto: UpdateBlogWithFileDTO): Observable<any> {
-    const blogData = new FormData();
-    blogData.append('title', updateBlogDto.title);
-    blogData.append('description', updateBlogDto.description);
-    blogData.append('link', updateBlogDto.link);
-    blogData.append('createdby', updateBlogDto.createdby);
-    if(updateBlogDto.imageFile)
-    {
-      blogData.append('file', updateBlogDto.imageFile, updateBlogDto.imageFile.name);
+  insertBlogImage(blogId: string, imageUrl: string): Observable<any> {
+    const data  = {
+      blogId: blogId,
+      imageUrl : imageUrl
     }
     return this.http
-      .patch<any>(this.baseUrl + `/blogs/${movieId}`, blogData)
+      .post<any>(this.baseUrl + '/blogs/insertBlogImage', data)
+      .pipe(
+        catchError((error) => {
+          console.error('Error in insertBlogImage:', error);
+          throw error; // Rethrow the error to be caught by the subscriber
+        })
+      );
+  }
+  updateBlog(movieId: string, updateBlogDto: UpdateBlogDTO): Observable<any> {
+    // const blogData = new FormData();
+    // blogData.append('title', updateBlogDto.title);
+    // blogData.append('description', updateBlogDto.description);
+    // blogData.append('link', updateBlogDto.link);
+    // blogData.append('createdby', updateBlogDto.createdby);
+    return this.http
+      .patch<any>(this.baseUrl + `/blogs/${movieId}`, updateBlogDto)
       .pipe(
         catchError((error) => {
           console.error('Error in updateBlog:', error);
