@@ -37,41 +37,41 @@
     </div>
   </div>
   <div class="flex-col w-1/2 right-container">
-    <div class="carousel-container">
-      <div #carousel class="carousel" *ngIf="country == 'canada'">
-        <div class="carousel-item">
-         <img src="../../../assets/images/70.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/71.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/72.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/73.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/74.jpg" alt="canada">
-        </div>
-      </div>
-      <div #carousel class="carousel" *ngIf="country == 'iraq'">
-        <div class="carousel-item">
-         <img src="../../../assets/images/80.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/81.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/82.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/83.jpg" alt="canada">
-        </div>
-        <div class="carousel-item">
-         <img src="../../../assets/images/84.jpg" alt="canada">
-        </div>
-      </div>
+    <div class="container">
+      <ul class="slides">
+        <ng-container *ngIf="country === 'canada'">
+          <li *ngFor="let slide of slides; let i = index" [class.active]="currentIndex === i">
+            <img [src]="slide" alt="country" />
+          </li>
+        </ng-container>
+        <ng-container *ngIf="country === 'iraq'">
+          <li *ngFor="let slide of slidesss; let i = index" [class.active]="currentIndex === i">
+            <img [src]="slide" alt="country" />
+          </li>
+        </ng-container>
+        
+    
+      </ul>
+    
+      <ul class="thumbnails">
+        <ng-container *ngIf="country === 'canada'">
+          <li *ngFor="let slide of slides; let i = index">
+            <a href="javascript:void(0);" (click)="showSlide(i)">
+              <img [src]="slide" />
+            </a>
+          </li>
+        </ng-container>
+        
+        <ng-container *ngIf="country === 'iraq'">
+          <li *ngFor="let slide of slidesss; let i = index">
+            <a href="javascript:void(0);" (click)="showSlide(i)">
+              <img [src]="slide" />
+            </a>
+          </li>
+        </ng-container>
+        
+      </ul>
     </div>
+    
   </div>
 </section>
