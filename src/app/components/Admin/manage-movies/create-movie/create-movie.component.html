@@ -1,18 +1,18 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font bg-yellow">
   <div
-    class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
+    class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center padding-top"
   >
     Create new movie
   </div>
-  <div class="container px-2 py-24 mx-auto flex flex-wrap items-center">
+  <div class="container px-2 py-24 mx-auto flex flex-wrap items-center padding-top">
     <div
-      class="lg:w-2/3 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
+      class="lg:w-2/3 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 padding-top"
     >
       <form [formGroup]="form" (submit)="onSaveMovie()">
         <div class="text-center">
           <button
             type="button"
-            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg btn-style"
             (click)="filePicker.click()"
           >
             ADD Movie photos (under dev)
@@ -117,7 +117,7 @@
                 />
               </div>
               <button
-                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles"
+                class="w-1/6 text-white bg-indigo-500 border-0 py-2 focus:outline-none hover:bg-indigo-600 rounded text-lg buttonStyles btn-style"
                 [disabled]="
                   form.value.coProducer == null ||
                   form.value.coProducer.length == 0
@@ -330,7 +330,7 @@
           <div class="p-2 w-full">
             <button
               type="submit"
-              class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg btn-style"
             >
               ADD MOVIE
             </button>
@@ -360,7 +360,7 @@
         Associate Producers : @for (associateProducer of associateProducers; track $index) {
         <div
           (click)="onDeleteItem('associateProducers', $index)"
-          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
         >
           {{ associateProducer }}
         </div>
@@ -370,7 +370,7 @@
         Cast : @for (cast of casts; track $index) {
         <div
           (click)="onDeleteItem('cast', $index)"
-          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
         >
           {{ cast }}
         </div>
@@ -381,7 +381,7 @@
         $index) {
         <div
           (click)="onDeleteItem('contriesOfOrigin', $index)"
-          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
         >
           {{ contrieOfOrigin }}
         </div>
@@ -391,20 +391,13 @@
         Producers : @for (producer of producers; track $index) {
         <div
           (click)="onDeleteItem('producers', $index)"
-          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
         >
           {{ producer }}
         </div>
         }
       </div>
       <!-- } -->
-      <h1 class="title-font font-medium text-3xl text-gray-900">
-        Slow-carb next level shoindcgoitch ethical authentic, poko scenester
-      </h1>
-      <p class="leading-relaxed mt-4">
-        Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-        hammock starladder roathse. Craies vegan tousled etsy austin.
-      </p>
     </div>
   </div>
 </section>

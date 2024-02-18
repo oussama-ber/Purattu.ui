@@ -12,3 +12,27 @@
   cursor: pointer;
   background-color: rgb(191 219 254);
 }
+
+.padding-top{
+  padding-top:2rem ;
+}
+.btn-style{
+  border: 1px solid black !important;
+  margin-bottom: 10px !important;
+  border-radius: 5px;
+}
+.image-preview{
+  max-height: 13rem;
+  img{
+      max-height: 10rem;
+      object-fit: contain;
+  }
+}
+.padding-styles{
+  padding: 3rem 1rem;
+}
+.pill-style{
+  background: whitesmoke;
+  padding: 5px 18px;
+  color: black;
+}

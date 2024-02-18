@@ -1,0 +1,33 @@
+.create-btn{
+    border: 1px solid black !important;
+    margin-bottom: 5rem;
+    :hover{
+        background-color:#032b43 ;
+        border: 1px solid whitesmoke;
+        color: whitesmoke;
+    }
+}
+
+.card-style{
+    background: #032b43;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.movie-title{
+    color:whitesmoke
+}
+.edit-btn{
+
+    background-color: #ffba08;
+    margin-right: 1rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: black;
+}
+.delete-btn{
+    background-color: #8f2707;
+    color: whitesmoke;
+    margin-right: 1rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
