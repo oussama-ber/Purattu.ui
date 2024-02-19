@@ -22,13 +22,13 @@ export class MoviesListComponent implements OnInit {
   fetchedMovies: Movie[] = [];
   fetchedMoviesIsfetched: boolean = false;
   fileName: string = '';
-  movieStatus: string = "Released";
+  movieStatus: string = ""; //Released
   //#endregion Variables
   ngOnInit(): void {
     this.getAllMovies(this.movieStatus);
   }
   getAllMovies(movieStatus: string) {
-    this._movieService.getAllMovies(movieStatus).subscribe(
+    this._movieService.fetchAllMovies().subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
         this.fetchedMoviesIsfetched = true;
@@ -42,5 +42,11 @@ export class MoviesListComponent implements OnInit {
   clicked(filterBy: string): void {
     this.movieStatus = filterBy,
     this.getAllMovies(filterBy);
+  }
+  onHoverMovieEnter(movieStatusInput: string){
+    this.movieStatus = movieStatusInput;
+  }
+  onHoverMovieLeave(){
+    this.movieStatus = "";
   }
 }

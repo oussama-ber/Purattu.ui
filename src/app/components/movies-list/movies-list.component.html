@@ -1,22 +1,28 @@
-<section class="py-10 bg-w sm:py-16 lg:py-24 z-40 relative bg-yellow cont-style">
-  <div class="container mx-auto">
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
-      @if(fetchedMoviesIsfetched){ @for (movie of fetchedMovies; track movie.id)
-        {
-          <a [routerLink]="['/detail', movie.id]" class="shadow-2xl relative ">
-            <div class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group">
-              <img
-                [src]="movie.imagePath"
-                class="w-full z-0 h-full object-fill example"
-              />
-            </div>
-          </a>
-        } @empty { Empty list of movies } } @else { Loading movies }
+<section class="py-2 bg-w sm:py-16 lg:py-24 z-40 relative bg-yellow cont-style">
+
+  <div class="cont-style">
+    <div class="container mx-auto ">
+      <div class="slider">
+          <div [ngClass]="{'item': fetchedMovies.length > 4}">
+            @if(fetchedMoviesIsfetched){
+              @for (movie of fetchedMovies; track movie.id)
+              {
+                <a  [routerLink]="['/detail', movie.id]" (mouseleave)="onHoverMovieLeave()" (mouseenter)="onHoverMovieEnter(movie.status)">
+                    <img
+                      [src]="movie.imagePath"
+                      class="w-full z-0 h-full object-fill example movieItem-img"
+                    />
+                </a>
+              } @empty { Empty list of movies }
+            } @else { Loading movies }
+          </div>
+        </div>
+    </div>
+    <div class="button-wrapper">
+      <button (click)="clicked('Released')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'Released'}">Released</button>
+      <button (click)="clicked('Comming soon')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'Comming soon'}"> Coming soon</button>
+      <button (click)="clicked('In Development')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'In Development'}">In Development</button>
     </div>
   </div>
-  <div class="button-wrapper">
-    <button (click)="clicked('Released')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'Released'}">Released</button>
-    <button (click)="clicked('Coming soon')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'Coming soon'}"> Coming soon</button>
-    <button (click)="clicked('In Development')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'In Development'}">In Development</button>
-  </div>
+
 </section>

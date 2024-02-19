@@ -1,28 +1,27 @@
-<section class="text-gray-600 body-font movies-styles-wrapper" style="height: auto; min-height: 68vh">
+<section class="text-gray-600 body-font bg-yellow">
   <div class="container px-5 py-24 mx-auto">
-    <div class="add-btn-wrapper">
-      <button (click)="goToCreateMovie()" type="button" class="add-btn-style">Add +</button>
-    </div>
-    <div class="flex flex-wrap m-4" class="card-wrapper">
+    <button
+    (click)="goToCreateMovie()"
+    type="button"
+    class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg create-btn"
+  >
+    Create Movie
+  </button>
+    <div class="flex flex-wrap -m-4">
       @if(fetchedMoviesIsfetched) { @for (movie of fetchedMovies; track movie.id) {
-      <div class="xl:w-1/4 md:w-1/2 p-1 card-style">
+      <div class="xl:w-1/4 md:w-1/2 p-4 card-style">
         <div class="bg-gray-100 p-6 rounded-lg">
           <img
             class="h-40 rounded w-full object-cover object-center mb-6"
             [src]="movie.imagePath"
             alt="content"
           />
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">
-            {{ movie.title }} -
-            <span
-              [ngClass]="{'released-status': movie.status == 'Released', 'in-development-status': movie.status == 'In Development','coming-soon-status': movie.status == 'Coming soon', }"
-              >({{ movie.status }})</span
-            >
+          <!-- <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3> -->
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4 movie-title">
+            {{ movie.title }}
           </h2>
-          <div class="buttons-wrapper">
-            <button (click)="onEdit(movie.id)" class="btn-style edit-btn" >Edit</button>
-            <button (click)="onDelete(movie.id, movie.imagePath)" class="btn-style delete-btn">Delete</button>
-          </div>
+          <button  class="edit-btn"  (click)="onEdit(movie.id)">Edit</button>
+          <button class="delete-btn" type="button"  (click)="onDelete(movie.id, movie.imagePath)">Delete</button>
           <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
         </div>
       </div>

@@ -204,3 +204,8 @@ $animationSpeed: 40s;
 
   background:  #032B43 ;
 }
+a img:hover{
+  background-image: url(../../../assets/images/bgt.png);
+  background-size: cover;
+  animation: ease-in 0.5s ;
+}
