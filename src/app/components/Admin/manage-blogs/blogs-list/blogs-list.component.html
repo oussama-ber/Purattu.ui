@@ -1,4 +1,4 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font" style="height: 66vh;">
   <div class="container px-5 py-24 mx-auto">
     <button
     (click)="goToCreateBlog()"
@@ -21,7 +21,7 @@
             {{ blog.title }}
           </h2>
           <button  style="background-color: blue; color: aliceblue; margin-right: 1rem;" (click)="onEdit(blog.id)">Edit</button>
-          <button type="button" style="background-color: red; color: aliceblue;" (click)="onDelete(blog.id)">Delete</button>
+          <button type="button" style="background-color: red; color: aliceblue;" (click)="onDelete(blog.id, blog.imagePath)">Delete</button>
           <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
         </div>
       </div>

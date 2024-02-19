@@ -21,7 +21,7 @@
             {{ movie.title }}
           </h2>
           <button  class="edit-btn"  (click)="onEdit(movie.id)">Edit</button>
-          <button class="delete-btn" type="button"  (click)="onDelete(movie.id)">Delete</button>
+          <button class="delete-btn" type="button"  (click)="onDelete(movie.id, movie.imagePath)">Delete</button>
           <!-- <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p> -->
         </div>
       </div>

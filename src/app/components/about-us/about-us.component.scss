@@ -89,9 +89,9 @@ line-height: normal;
 .about-content{
   color: #032B43;
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 175%; /* 42px */
 }
 .page-wrapper{
@@ -109,7 +109,7 @@ line-height: normal;
   display: flex;
   justify-content: center;
   .imgabout1{
-      height: 55%;
+      height: 85%;
   }
   .imgabout2{
       height: 85%;
@@ -188,6 +188,9 @@ $animationSpeed: 40s;
     justify-content: center;
     align-items: center;
 	}
+}
+.img-wrap{
+  padding: 0px 50px;
 }
 @keyframes moveTextRight {
   0% {

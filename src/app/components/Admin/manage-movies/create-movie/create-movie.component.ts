@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { MovieService } from '../../../../services/movie.service';
 import { country } from '../../../../models/shared.models';
+// import * as fileSaver from 'file-saver';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +28,7 @@ export class CreateMovieComponent implements OnInit {
   imagePreview: string | undefined;
   private mode = 'create';
   private movieId: string = '';
-  public moviesStatus: string[] = ['Released', 'Comming soon', 'In Development'];
+  public moviesStatus: string[] = ['Released', 'Coming soon', 'In Development'];
   public coProducers: string[] = [];
   public casts: string[] = [];
   public contriesOfOrigin: string[] = [];
@@ -33,7 +36,7 @@ export class CreateMovieComponent implements OnInit {
   public associateProducers: string[] = [];
   public selectedCountries : string[] = [];
   public allCountries : country[] = [];
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private fireStorage: AngularFireStorage, private router: Router) {
     this.form = this.fb.group({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
@@ -53,7 +56,7 @@ export class CreateMovieComponent implements OnInit {
       mainCast: new FormControl(null, { validators: [Validators.required] }),
       language: new FormControl(null, { validators: [Validators.required] }),
       awards: new FormControl(null, { validators: [Validators.required] }),
-      status: new FormControl(null, { validators: [Validators.required] }),
+      status: new FormControl('Released', { validators: [Validators.required] }),
       image: new FormControl(null, {
         validators: [Validators.required],
       }),
@@ -187,7 +190,7 @@ export class CreateMovieComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onSaveMovie() {
+  async onSaveMovie() {
     let state = 'onSavePost';
     // if (this.form.invalid) {
     //   alert('form not valid')
@@ -211,16 +214,33 @@ export class CreateMovieComponent implements OnInit {
       createMovieDto.producer = this.producers;
       createMovieDto.awards = this.form.value.awards;
       createMovieDto.status = this.form.value.status;
-      createMovieDto.imageFile = this.form.value.image;
-      this._movieService.insertMovie(createMovieDto).subscribe((res) => {
+      // createMovieDto.imageFile = this.form.value.image;
+
+
+      await this._movieService.insertMovie(createMovieDto).subscribe(async (res) => {
         this.isLoading = false;
+        if(this.form.value.image != null){
+          //insert movie poster into firebase and update the image url on our db
+          let movieImgPath = `MoviesImages/${this.form.value.image.name}`;
+          let copyMovieImgPath = movieImgPath;
+          copyMovieImgPath = copyMovieImgPath + new Date();
+          const uploadTask = await this.fireStorage.upload(copyMovieImgPath, this.form.value.image);
+          const url = await uploadTask.ref.getDownloadURL()
+          await this._movieService.insertMovieImage(res.createdMovieId, url).subscribe((rs)=>{
+            this.form.reset();
+            this.router.navigate(['/manageMovies']);
+          });
+        }else{
+          this.form.reset();
+          this.router.navigate(['/manageMovies']);
+        }
+
 
       });
     } else {
 
     }
 
-    this.form.reset();
   }
   onCancel(){
     this.closeOuput.emit({});

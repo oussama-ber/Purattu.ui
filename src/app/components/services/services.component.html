@@ -1,8 +1,8 @@
 <section class="hero flex-row ">
-  <div class="flex-col w-1/2 left-container service-layout-styles">
+  <div class="flex-col w-1/2 left-container service-layout-styles" >
     <div>
       <h1 class="about-title">Our Services</h1>
-      <p class="about-content">
+      <p class="service-content">
         With offices in Toronto and Baghdad, we offer a comprehensive range of
         services at every stage of film creation in both Iraq and Canada. Whether
         you're envisioning a sprawling feature film or a snappy short, we are
@@ -19,7 +19,7 @@
         a variety of funds in the MENA region.
       </p>
       <h1 class="about-title">Why Choose Purattu</h1>
-      <p class="about-content">
+      <p class="service-content">
         Like the innovators of old who crafted the wheel and the written word, we
         approach filmmaking with a contagious inventiveness. We hold deep respect
         for every creative endeavour, transforming the filmmaking process into a
@@ -27,7 +27,7 @@
         as a family.
       </p>
       <h1 class="about-title">Our Locations</h1>
-      <p class="about-content">
+      <p class="service-content">
         These places are where we conduct the majority of our project shootings.
       </p>
     </div>
@@ -49,10 +49,10 @@
             <img [src]="slide" alt="country" />
           </li>
         </ng-container>
-        
-    
+
+
       </ul>
-    
+
       <ul class="thumbnails">
         <ng-container *ngIf="country === 'canada'">
           <li *ngFor="let slide of slides; let i = index">
@@ -61,7 +61,7 @@
             </a>
           </li>
         </ng-container>
-        
+
         <ng-container *ngIf="country === 'iraq'">
           <li *ngFor="let slide of slidesss; let i = index">
             <a href="javascript:void(0);" (click)="showSlide(i)">
@@ -69,9 +69,9 @@
             </a>
           </li>
         </ng-container>
-        
+
       </ul>
     </div>
-    
+
   </div>
 </section>

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Movie } from '../../../../models/movie.model';
 import { MovieService } from '../../../../services/movie.service';
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-manage-movies',
@@ -16,7 +17,7 @@ export class ManageMoviesComponent {
     { path: 'https://source.unsplash.com/800x600/?fantasy' },
   ];
   _movieService = inject(MovieService);
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private fireStorage: AngularFireStorage) {
 
   }
   //#region Variables
@@ -28,7 +29,7 @@ export class ManageMoviesComponent {
     this.getAllMovies();
   }
   getAllMovies() {
-    this._movieService.getAllMovies("Released").subscribe(
+    this._movieService.fetchAllMovies().subscribe(
       (res) => {
         this.fetchedMovies = res.movies;
         this.fetchedMoviesIsfetched = true;
@@ -43,10 +44,17 @@ export class ManageMoviesComponent {
   onEdit(movieId: string){
     this._router.navigate([`/editMovie/${movieId}`]);
   }
-  onDelete(movieId: string){
-    this._movieService.deleteMovie(movieId).subscribe((res)=>{
+  onDelete(movieId: string, moviePath: string){
+    this._movieService.deleteMovie(movieId).subscribe(async (res)=>{
       if(res){
-        this.getAllMovies();
+        if(moviePath.length > 0){
+          let exsitingImageTask = await this.fireStorage.refFromURL(moviePath);
+          exsitingImageTask.delete().subscribe(async () =>  {
+            this.getAllMovies();
+          })
+        }else{
+          this.getAllMovies();
+        }
       }else{
         alert('could not delete the movie')
       }

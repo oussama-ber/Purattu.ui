@@ -198,7 +198,6 @@ $animationSpeed: 40s;
   justify-content: space-around;
   align-items: center;
   height: 100vmin;
-  padding-top: 0px 
 }
 .button-wrapper{
   display: inline-flex;
@@ -262,7 +261,7 @@ button.btn-movie:active{
 }
 .item img
 	{
-		min-width: 200px;
+		min-width: 300px;
 		padding: 0 30px;
 	}
 .slider:hover .item {
@@ -283,4 +282,8 @@ button.btn-movie:active{
   justify-items: center;
   align-items: center;
   justify-content: space-around;
+}
+.movieItem-img {
+  min-width: 300px;
+	padding: 0 30px;
 }

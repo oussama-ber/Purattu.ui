@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+declare let AOS: any;
 
 @Component({
   selector: 'app-services',
@@ -28,13 +29,31 @@ export class ServicesComponent implements OnInit{
 
 
   constructor() {
- 
+
   }
 
   ngOnInit(): void {
+    // AOS.init();
 
+    // setInterval(() => this.moveNext(), 1000);
   }
 
+  // moveNext() {
+  //   if (this.carousel) {
+  //     const items = this.carousel.nativeElement.querySelectorAll('.carousel-item');
+  //     const clone = items[this.currentItem % items.length].cloneNode(true) as HTMLDivElement;
+  //     this.carousel.nativeElement.appendChild(clone);
+  //     this.currentItem++;
+  //     this.carousel.nativeElement.style.transform = `translateY(-${this.itemHeight * this.currentItem}px)`;
+
+  //     // Remove the first element after animation completes
+  //     setTimeout(() => {
+  //       if (this.carousel && this.carousel.nativeElement.firstElementChild) {
+  //         this.carousel.nativeElement.removeChild(this.carousel.nativeElement.firstElementChild);
+  //       }
+  //     }, 500);
+  //   }
+  // }
   showSlide(index: number): void {
     this.currentIndex = index;
   }

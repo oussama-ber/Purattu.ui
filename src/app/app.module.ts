@@ -31,6 +31,11 @@ import { EditBlogComponent } from './components/Admin/manage-blogs/edit-blog/edi
 import { ServicesComponent } from './components/services/services.component';
 import { BannerComponent } from './components/banner/banner.component';
 
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment.development';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +67,10 @@ import { BannerComponent } from './components/banner/banner.component';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
+
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

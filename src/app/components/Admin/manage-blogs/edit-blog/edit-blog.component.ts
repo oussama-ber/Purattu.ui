@@ -2,8 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Blog, CreateBlogDTO, UpdateBlogWithFileDTO } from '../../../../models/blog.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../../../services/blog.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-edit-blog',
@@ -22,7 +23,7 @@ export class EditBlogComponent  implements OnInit{
   private currentBlogId: string = '';
   currentBlog: Blog = new Blog();
   public blogStatusOptions = ['Draft','Published']
-  constructor(private route: ActivatedRoute,private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute,private fb: FormBuilder, private fireStorage: AngularFireStorage,private router: Router) {
     this.routeSub = this.route.params.subscribe(async (params) => {
       this.currentBlogId = params['blogid'];
       await this.getBlog(this.currentBlogId);
@@ -69,16 +70,34 @@ export class EditBlogComponent  implements OnInit{
   }
 
   onUpdateBlog() {
+
     this.isLoading = true;
     let createBlogDTO = new UpdateBlogWithFileDTO();
     createBlogDTO.title = this.updateBlogform.value.title;
     createBlogDTO.description = this.updateBlogform.value.description;
     createBlogDTO.link = this.updateBlogform.value.link;
-    createBlogDTO.imageFile = this.updateBlogform.value.image;
-    this._blogService.updateBlog(this.currentBlogId, createBlogDTO).subscribe((res) => {
-      this.isLoading = false
+    // createBlogDTO.imageFile = this.updateBlogform.value.image;
+    this._blogService.updateBlog(this.currentBlogId, createBlogDTO).subscribe(async (res) => {
+      this.isLoading = false;
+      if(this.updateBlogform.value.image != null && this.currentBlog.imagePath.length > 0 ){
+        let exsitingImageTask = await this.fireStorage.refFromURL(this.currentBlog.imagePath);
+        exsitingImageTask.delete().subscribe(async () =>  {
+            let blogImgPath = `BlogsImages/${this.updateBlogform.value.image.name}`;
+            let copyBlogImgPath = blogImgPath;
+            copyBlogImgPath = copyBlogImgPath + new Date();
+            const uploadTask = await this.fireStorage.upload(copyBlogImgPath, this.updateBlogform.value.image);
+            const url = await uploadTask.ref.getDownloadURL()
+            await this._blogService.insertBlogImage(res.updatedBlogId, url).subscribe((rs)=>{
+              this.updateBlogform.reset();
+              this.router.navigate(['/manageBlogs']);
+            });
+        });
+      }else{
+        this.updateBlogform.reset();
+        this.router.navigate(['/manageBlogs']);
+      }
+
     });
 
-    this.updateBlogform.reset();
   }
 }

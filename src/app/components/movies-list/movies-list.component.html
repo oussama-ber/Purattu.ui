@@ -3,38 +3,20 @@
   <div class="cont-style">
     <div class="container mx-auto ">
       <div class="slider">
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/10/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/11/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/12/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/13/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/14/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/15/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/16/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/17/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/18/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/19/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/28/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/29/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/33/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/53/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/54/200/300"></a></div>
-        <div class="item"><a href=""><img alt="logo" src="https://picsum.photos/id/55/200/300"></a></div>
-      </div>
-      <!-- <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 cards-style">
-        @if(fetchedMoviesIsfetched){ @for (movie of fetchedMovies; track movie.id)
-          {
-            <a  [routerLink]="['/detail', movie.id]" class="shadow-2xl relative ">
-              <div
-                class="h-full relative shadow-2xl shadow-green-900 overflow-hidden group"
-              >
-                <img
-                  [src]="movie.imagePath"
-                  class="w-full z-0 h-full object-fill example"
-                />
-              </div>
-            </a>
-          } @empty { Empty list of movies } } @else { Loading movies }
-      </div> -->
+          <div [ngClass]="{'item': fetchedMovies.length > 4}">
+            @if(fetchedMoviesIsfetched){
+              @for (movie of fetchedMovies; track movie.id)
+              {
+                <a  [routerLink]="['/detail', movie.id]" (mouseleave)="onHoverMovieLeave()" (mouseenter)="onHoverMovieEnter(movie.status)">
+                    <img
+                      [src]="movie.imagePath"
+                      class="w-full z-0 h-full object-fill example movieItem-img"
+                    />
+                </a>
+              } @empty { Empty list of movies }
+            } @else { Loading movies }
+          </div>
+        </div>
     </div>
     <div class="button-wrapper">
       <button (click)="clicked('Released')" class="btn-movie" [ngClass]="{'selected-btn-movie': movieStatus == 'Released'}">Released</button>
