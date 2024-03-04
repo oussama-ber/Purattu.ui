@@ -14,6 +14,7 @@ import {
 } from '../models/movie.model';
 import { country } from '../models/shared.models';
 import { environment } from '../../environments/environment.development';
+import { SaveMovieAwardImage } from '../models/RequestOutput/saveMovieAwards.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,21 +23,27 @@ export class MovieService {
   constructor(private http: HttpClient, private router: Router) {}
   baseUrl: string = environment.ApiBaseUrl;
   courtriesUrl: string = 'assets/countries.json';
+
   getCountries() {
     return this.http.get<country[]>(this.courtriesUrl);
   }
+
   fetchAllMovies(): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies/fetchAllMovies`);
   }
+
   fetchLastestMovies(): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies/lastestMovies`);
   }
+
   getAllMovies(movieTag: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies?movieStatus=${movieTag}`);
   }
+
   getMovie(movieId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/movies/${movieId}`);
   }
+
   insertMovie(createMovieDto: CreateMovieDTO): Observable<any> {
     const data = {
       title: createMovieDto.title,
@@ -63,6 +70,7 @@ export class MovieService {
         })
       );
   }
+
   insertMovieImage(movieId: string, imageUrl: string): Observable<any> {
     const MovieData = new FormData();
     MovieData.append('movieId', movieId);
@@ -80,6 +88,19 @@ export class MovieService {
         })
       );
   }
+
+  saveMovieAwardImage(saveMovieAwardImage: SaveMovieAwardImage): Observable<any> {
+    return this.http
+      .post<any>(this.baseUrl + '/movies/saveMovieAwardImage', saveMovieAwardImage)
+      .pipe(
+        catchError((error) => {
+          console.error('Error in saveMovieAwardImage:', error);
+          throw error; // Rethrow the error to be caught by the subscriber
+        })
+      );
+  }
+
+
   updateMovie(movieId: string, createMovieDto: UpdateMovieWithFileDTO): Observable<any> {
     const data = {
       title: createMovieDto.title,
@@ -106,6 +127,7 @@ export class MovieService {
         })
       );
   }
+
   deleteMovie(movieId: string): Observable<any> {
     return this.http.delete<any>(this.baseUrl + `/movies/${movieId}`).pipe(
       catchError((error) => {
@@ -129,4 +151,5 @@ export class MovieService {
     // Return an observable with a user-facing error message.
     return throwError('Something bad happened; please try again later.');
   }
+
 }
