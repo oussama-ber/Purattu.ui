@@ -1,76 +1,8 @@
 <div class="slider">
-    <div class=" slide-track">
-      <div class= "slide">
-        <img src="../../../assets/images/l1.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l2.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l3.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l4.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l5.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l6.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l7.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l8.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l9.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l10.png"alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l11.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l12.png" alt="logo">
-      </div>
-      <div class= "slide">
-        <img src="../../../assets/images/l1.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l2.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l3.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l4.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l5.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l6.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l7.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l8.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l9.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l10.png"alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l11.png" alt="logo">
-      </div>
-      <div class="slide">
-        <img src="../../../assets/images/l12.png" alt="logo">
-      </div>
+  <div class="slide-track" [@scrollAnimation]="true">
+    <div class="slide" *ngFor="let slide of slides">
+      <img [src]="slide" alt="logo">
     </div>
   </div>
+</div>
+
