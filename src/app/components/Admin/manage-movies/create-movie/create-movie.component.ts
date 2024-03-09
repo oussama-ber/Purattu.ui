@@ -14,6 +14,7 @@ import { Route, Router } from '@angular/router';
 import { appConstants } from '../../../../constants/storageConstants';
 import { SaveMovieAwardImage } from '../../../../models/RequestOutput/saveMovieAwards.model';
 
+
 @Component({
   selector: 'app-create-movie',
   templateUrl: './create-movie.component.html',

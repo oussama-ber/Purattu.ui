@@ -1,40 +1,69 @@
 <section class="hero flex-row ">
   <div class="flex-col w-1/2 left-container service-layout-styles" >
     <div>
-      <h1 class="about-title">Our Services</h1>
-      <p class="service-content">
-        With offices in Toronto and Baghdad, we offer a comprehensive range of
-        services at every stage of film creation in both Iraq and Canada. Whether
-        you're envisioning a sprawling feature film or a snappy short, we are
-        adept at guiding your cinematic journey through the enchanting landscapes
-        of Canada and the echoes of Sumer and Babylon in Iraq. At Purattu, we
-        extend a warm welcome to individual artists as well as established film
-        production companies and studios. Our approach is personalised, adapting
-        to the unique requirements of each project and the needs of content
-        producers. From the inception of creative ideas in writing rooms to full
-        production services, picture editing, and DCP. Majority of our projects
-        are treaty and non-treaty international co-productions. We aid content
-        producers in navigating the intricacies of Canadian tax incentives, as
-        well as applications to the funding programs of the Canadian Heritage and
-        a variety of funds in the MENA region.
-      </p>
-      <h1 class="about-title">Why Choose Purattu</h1>
-      <p class="service-content">
-        Like the innovators of old who crafted the wheel and the written word, we
-        approach filmmaking with a contagious inventiveness. We hold deep respect
-        for every creative endeavour, transforming the filmmaking process into a
-        joyous leap into the realms of storytelling, and treat every project team
-        as a family.
-      </p>
-      <h1 class="about-title">Our Locations</h1>
-      <p class="service-content">
-        These places are where we conduct the majority of our project shootings.
-      </p>
+      <div>
+        <h1 class="about-title">Our Services</h1>
+        <p class="service-content">
+          With offices in Toronto and Baghdad, we offer a comprehensive range of
+          services at every stage of film creation in both Iraq and Canada. Whether
+          you're envisioning a sprawling feature film or a snappy short, we are
+          adept at guiding your cinematic journey through the enchanting landscapes
+          of Canada and the echoes of Sumer and Babylon in Iraq. At Purattu, we
+          extend a warm welcome to individual artists as well as established film
+          production companies and studios. Our approach is personalised, adapting
+          to the unique requirements of each project and the needs of content
+          producers. From the inception of creative ideas in writing rooms to full
+          production services, picture editing, and DCP. Majority of our projects
+          are treaty and non-treaty international co-productions. We aid content
+          producers in navigating the intricacies of Canadian tax incentives, as
+          well as applications to the funding programs of the Canadian Heritage and
+          a variety of funds in the MENA region.
+        </p>
+      </div>
+      <div>
+        <h1 class="about-title">Why Choose Purattu</h1>
+        <p class="service-content">
+          Like the innovators of old who crafted the wheel and the written word, we
+          approach filmmaking with a contagious inventiveness. We hold deep respect
+          for every creative endeavour, transforming the filmmaking process into a
+          joyous leap into the realms of storytelling, and treat every project team
+          as a family.
+        </p>
+      </div>
+      <div>
+        <h1 class="about-title">Our Locations</h1>
+        <p class="service-content">
+          These places are where we conduct the majority of our project shootings.
+        </p>
+        <div class="button-wrapper">
+          <button (click)="swithCountry()" class="btn-service" [ngClass]="{'selected-btn-service': country == 'canada'}">Canada</button>
+          <button (click)="swithCountry()" class="btn-service" [ngClass]="{'selected-btn-service': country == 'iraq'}">Iraq</button>
+        </div>
+      </div>
+   
+        <div class="container px-5 py-2 mx-auto">
+          <div class="flex flex-wrap -m-4 text-center">
+            <div class="p-4 sm:w-1/4 w-1/2">
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-blue">2.7K</h2>
+              <p class="leading-relaxed text-blue">Films</p>
+            </div>
+            <div class="p-4 sm:w-1/4 w-1/2">
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">1.8K</h2>
+              <p class="leading-relaxed text-blue">Locations</p>
+            </div>
+            <div class="p-4 sm:w-1/4 w-1/2">
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">35</h2>
+              <p class="leading-relaxed text-blue">Downloads</p>
+            </div>
+            <div class="p-4 sm:w-1/4 w-1/2">
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">4</h2>
+              <p class="leading-relaxed text-blue">Products</p>
+            </div>
+          </div>
+        </div>
+   
     </div>
-    <div class="button-wrapper">
-      <button (click)="swithCountry()" class="btn-service" [ngClass]="{'selected-btn-service': country == 'canada'}">Canada</button>
-      <button (click)="swithCountry()" class="btn-service" [ngClass]="{'selected-btn-service': country == 'iraq'}">Iraq</button>
-    </div>
+
   </div>
   <div class="flex-col w-1/2 right-container">
     <div class="container">

@@ -22,17 +22,14 @@
 <header class="text-gray-600 body-font bg-style bg-blue">
   <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center wrap-setting  ">
     <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto nav-styles">
-      <a
-      class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/movies']"
-      [ngClass]="{'active-nav': currentRoute == '/movies'}"
-      >Movies  <span class="arabic-font" >أفلام</span></a>
-      <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/blogs']" [ngClass]="{'active-nav': currentRoute == '/blogs'}">Blog  <span class="arabic-font" >مدونة</span></a>
+      <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/movies']" [ngClass]="{'active-nav': currentRoute == '/movies'}" >Movies  <span class="arabic-font" >أفلام</span></a>
+      <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/services']" [ngClass]="{'active-nav': currentRoute == '/services'}">Services  <span class="arabic-font" >خدمات</span></a>
     </nav>
     <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0 logo-wrapper" [routerLink]="['/']">
       <img src="../../../assets/images/logo.png" alt="logo" />
     </a>
     <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto display-setting nav-setting nav-styles">
-      <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/services']" [ngClass]="{'active-nav': currentRoute == '/services'}">Services  <span class="arabic-font" >خدمات</span></a>
+      <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/blogs']" [ngClass]="{'active-nav': currentRoute == '/blogs'}">Blog  <span class="arabic-font" >مدونة</span></a>
       <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/about']" [ngClass]="{'active-nav': currentRoute == '/about'}" >About us  <span class="arabic-font" >معلومات عنا</span></a>
       <!-- @if (userIsAuthenticated) {
         <a class="mr-5 hover:text-gray-900 nav-text raleway-textt" [routerLink]="['/manageMovies']" [ngClass]="{'active-nav': currentRoute == '/manageMovies'}">Manage Movies</a>
