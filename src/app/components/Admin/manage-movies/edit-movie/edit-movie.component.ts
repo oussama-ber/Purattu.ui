@@ -10,6 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { appConstants } from '../../../../constants/storageConstants';
+import { SaveMovieAwardImage } from '../../../../models/RequestOutput/saveMovieAwards.model';
 
 @Component({
   selector: 'app-edit-movie',
@@ -31,6 +33,15 @@ export class EditMovieComponent implements OnInit {
   public casts: string [] = [];
   public contriesOfOrigins: string [] = [];
   public moviesStatus: string[] = ['Released', 'Coming soon', 'In Development'];
+  public uploadedAwardFilesUrls: string[] = [];
+
+  public uploadedAwardFilesUrlsToDelete: string[] = [];
+  public uploadedAwardFilesUrlsToAdd: File[] = [];
+  public updatedAwardUrls: string[] = [];
+  //constants
+  public moviesImagesCnst: string = appConstants.MOVIESIMAGES;
+  public awardsImagesCnst: string = appConstants.AWARDSIMAGES;
+  public manageMovieRoute: string = appConstants.MANAGEMOVIES;
   //#endregion variables
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private fireStorage:AngularFireStorage, private router: Router) {
@@ -55,11 +66,13 @@ export class EditMovieComponent implements OnInit {
       this.contriesOfOrigins = this.currentMovie.contriesOfOrigin;
       this.casts = this.currentMovie.cast;
       this.producers = this.currentMovie.producer;
-
+      this.uploadedAwardFilesUrls = this.currentMovie.awardsUrls;
+      this.updatedAwardUrls = this.currentMovie.awardsUrls;
       this.setFormValues(this.currentMovie);
 
     });
   }
+
   setFormValues(currentMovie: Movie) {
 
     this.imagePreview = currentMovie.imagePath;
@@ -89,6 +102,7 @@ export class EditMovieComponent implements OnInit {
       image: null
     });
   }
+
   buildForm() {
     this.updateMovieform = this.fb.group({
       title: new FormControl('', { validators: [Validators.required] }),
@@ -110,18 +124,8 @@ export class EditMovieComponent implements OnInit {
       image: new FormControl(null),
     });
   }
-  // click listener
-  onImagePicked(event: any) {
-    const file = (File = event.target.files[0]);
-    this.updateMovieform.patchValue({ image: file });
-    this.updateMovieform.get('image')?.updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
-  onUpdateMovie() {
+
+  async onUpdateMovie() {
     const movietoUpdate: UpdateMovieWithFileDTO = new UpdateMovieWithFileDTO();
     movietoUpdate.title = this.updateMovieform.value.title;
     movietoUpdate.story = this.updateMovieform.value.story;
@@ -138,28 +142,104 @@ export class EditMovieComponent implements OnInit {
     movietoUpdate.producer = this.updateMovieform.value.runningTime;
     movietoUpdate.awards = this.awards;
     movietoUpdate.status = this.updateMovieform.value.status;
-    // movietoUpdate.imageFile = this.updateMovieform.value.image;
-    this._movieService.updateMovie(this.currentMovieId ,movietoUpdate).subscribe(async res=>{
+    await this._movieService.updateMovie(this.currentMovieId ,movietoUpdate).subscribe(async res=>{
         if(this.updateMovieform.value.image != null && this.currentMovie.imagePath.length > 0 ){
           let exsitingImageTask = await this.fireStorage.refFromURL(this.currentMovie.imagePath);
           exsitingImageTask.delete().subscribe(async () =>  {
-              let movieImgPath = `MoviesImages/${this.updateMovieform.value.image.name}`;
+              let movieImgPath = `${this.moviesImagesCnst}/${this.updateMovieform.value.image.name}`;
               let copyMovieImgPath = movieImgPath;
               copyMovieImgPath = copyMovieImgPath + new Date();
               const uploadTask = await this.fireStorage.upload(copyMovieImgPath, this.updateMovieform.value.image);
               const url = await uploadTask.ref.getDownloadURL()
-              await this._movieService.insertMovieImage(res.updatedMovieId, url).subscribe((rs)=>{
-                this.onResetArrays();
-                this.router.navigate(['/manageMovies']);
+              await this._movieService.insertMovieImage(res.updatedMovieId, url).subscribe(async (rs)=>{
+
               });
           });
-        }else{
-          this.onResetArrays();
-          this.router.navigate(['/manageMovies']);
         }
+        if(this.uploadedAwardFilesUrlsToDelete.length > 0 || this.uploadedAwardFilesUrlsToAdd.length > 0){
+          await this.deleteMovieAwardFirebaseStorage();
+          await this.addMovieAwardFileBaseStorage();
+          await this.addMovieAward();
+        }else{
+          await this.onCloseComponent();
+
+        }
+    });
+    // await this.onCloseComponent();
+  }
+
+  async deleteMovieAwardFirebaseStorage(){
+    if(this.uploadedAwardFilesUrlsToDelete.length > 0){
+      //delete awards from file storage
+      for (let awardToDeleteIndex = 0; awardToDeleteIndex < this.uploadedAwardFilesUrlsToDelete.length; awardToDeleteIndex++) {
+        let exsitingImageTask = await this.fireStorage.refFromURL(this.uploadedAwardFilesUrlsToDelete[awardToDeleteIndex]);
+        await exsitingImageTask.delete().subscribe(async (storageResponse) => {
+        });
+      }
+    }
+  }
+
+  async addMovieAwardFileBaseStorage(){
+    if (this.uploadedAwardFilesUrlsToAdd.length > 0) {
+      //add award to file storage
+      for (let awardToAddIndex = 0; awardToAddIndex < this.uploadedAwardFilesUrlsToAdd.length; awardToAddIndex++) {
+        let awardImgPath = `${this.awardsImagesCnst}/${this.uploadedAwardFilesUrlsToAdd[awardToAddIndex].name}`;
+        let copyAwardImgPath = awardImgPath;
+        copyAwardImgPath = copyAwardImgPath + new Date();
+        const uploadTask = await this.fireStorage.upload(copyAwardImgPath, this.uploadedAwardFilesUrlsToAdd[awardToAddIndex]);
+        const url = await uploadTask.ref.getDownloadURL();
+        this.updatedAwardUrls.push(url);
+      }
+
+    }
+  }
+
+  async addMovieAward(){
+    let saveMovieAwardImage = new  SaveMovieAwardImage(this.currentMovieId, this.updatedAwardUrls);
+    this._movieService.saveMovieAwardImage(saveMovieAwardImage).subscribe((updateMovieAwards)=>{
+      this.onCloseComponent();
     })
   }
-  //#region Utiles
+
+  onImagePicked(event: any) {
+    const file = (File = event.target.files[0]);
+    this.updateMovieform.patchValue({ image: file });
+    this.updateMovieform.get('image')?.updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  async onAwardImagePicked(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const file = (File = event.target.files[0]);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.uploadedAwardFilesUrlsToAdd = [...this.uploadedAwardFilesUrlsToAdd, file];
+        this.uploadedAwardFilesUrls= [...this.uploadedAwardFilesUrls, reader.result as string];
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onDeleteAwardImg(fileUrlIndex: number, fileUrl: string){
+    let awardImgToDelete : string = this.uploadedAwardFilesUrls[fileUrlIndex];
+    if(awardImgToDelete.includes('https://firebasestorage')){
+      this.uploadedAwardFilesUrlsToDelete = [...this.uploadedAwardFilesUrlsToDelete, ...this.uploadedAwardFilesUrls.filter((el, index)=> index == fileUrlIndex)];
+      this.updatedAwardUrls = this.updatedAwardUrls.filter((el)=> el != fileUrl);
+    }
+    this.uploadedAwardFilesUrls = this.uploadedAwardFilesUrls.filter((el, index)=> index != fileUrlIndex);
+
+  }
+
+  onCloseComponent(){
+    this.onResetArrays();
+    this.router.navigate([`/${this.manageMovieRoute}`]);
+  }
+
   onResetArrays(){
     this.coProducers = [];
     this.associateProducers = [];
@@ -167,7 +247,12 @@ export class EditMovieComponent implements OnInit {
     this.contriesOfOrigins = [];
     this.producers = [];
     this.awards = [];
+    this.uploadedAwardFilesUrlsToDelete = [];
+    this.uploadedAwardFilesUrlsToAdd = [];
+    this.updatedAwardUrls = [];
+    this.updateMovieform.reset();
   }
+
   onAddItem(listName: string){
     switch (listName) {
       case "coproducers":
@@ -191,6 +276,7 @@ export class EditMovieComponent implements OnInit {
     }
 
   }
+
   onDeleteItem(listName: string, indexItem: number){
     switch (listName) {
       case "coproducers":
@@ -213,7 +299,7 @@ export class EditMovieComponent implements OnInit {
         break;
     }
   }
-  //#region add items
+
   onAddCoProducer(){
     if(this.updateMovieform.value.coProducer == null || this.updateMovieform.value.coProducer.length == 0){
       return
@@ -221,6 +307,7 @@ export class EditMovieComponent implements OnInit {
     this.coProducers = [...this.coProducers, this.updateMovieform.value.coProducer]
     this.updateMovieform.get('coProducer')?.setValue(null);
   }
+
   onAddCast(){
     if(this.updateMovieform.value.cast == null || this.updateMovieform.value.cast.length == 0){
       return;
@@ -228,6 +315,7 @@ export class EditMovieComponent implements OnInit {
     this.casts = [...this.casts, this.updateMovieform.value.cast]
     this.updateMovieform.get('cast')?.setValue(null);
   }
+
   onAddCoundtryOfOrigin(){
     if(this.updateMovieform.value.contriesOfOrigin == null || this.updateMovieform.value.contriesOfOrigin.length == 0){
       return
@@ -235,6 +323,7 @@ export class EditMovieComponent implements OnInit {
     this.contriesOfOrigins = [...this.contriesOfOrigins, this.updateMovieform.value.contriesOfOrigin]
     this.updateMovieform.get('contriesOfOrigin')?.setValue(null);
   }
+
   onAddProducers(){
     if(this.updateMovieform.value.producer == null || this.updateMovieform.value.producer.length == 0){
       return
@@ -242,6 +331,7 @@ export class EditMovieComponent implements OnInit {
     this.producers = [...this.producers, this.updateMovieform.value.producer]
     this.updateMovieform.get('producer')?.setValue(null);
   }
+
   onAddAssociateProducer(){
     if(this.updateMovieform.value.associateProducer == null || this.updateMovieform.value.associateProducer.length == 0){
       return
@@ -249,26 +339,26 @@ export class EditMovieComponent implements OnInit {
     this.associateProducers = [...this.associateProducers, this.updateMovieform.value.associateProducer]
     this.updateMovieform.get('associateProducer')?.setValue(null);
   }
-  //#endregion add items
 
-  //#region delete items
   onDeleteCoProducer(indexCoProducer: number){
     this.coProducers.splice(indexCoProducer, 1);
   }
+
   onDeleteCast(indexCast: number){
     this.casts.splice(indexCast, 1);
   }
+
   onDeleteContriesOfOrigin(indexCountry: number){
     this.contriesOfOrigins.splice(indexCountry, 1);
   }
+
   onDeleteProducers(indexProducer: number){
     this.producers.splice(indexProducer, 1);
   }
+
   onDeleteAssociateProducers(indexAssociateProducer: number){
     this.associateProducers.splice(indexAssociateProducer, 1);
   }
-  //#endregion delete items
 
-  //#endregion Utiles
 
 }

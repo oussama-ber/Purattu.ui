@@ -326,6 +326,16 @@
               </button>
             </div>
           </div>
+          <!-- Add awards -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <button  type="button" (click)="awardfilePicker.click() " class="previous-button-style">
+                <input type="file" #awardfilePicker (change)="onAwardImagePicked($event)" hidden>
+                  Upload award
+                  <i class="fa-solid fa-cloud-arrow-up "></i>
+              </button>
+            </div>
+          </div>
           <!-- Submit -->
           <div class="p-2 w-full">
             <button
@@ -394,6 +404,16 @@
           class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
         >
           {{ producer }}
+        </div>
+        }
+      </div>
+      <div class="flex flex-row flex-wrap">
+        Award files : @for (awardFileName of uploadedAwardFileNames; track $index) {
+        <div
+          (click)="deleteAwardFileItem($index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
+        >
+          {{ awardFileName }}
         </div>
         }
       </div>

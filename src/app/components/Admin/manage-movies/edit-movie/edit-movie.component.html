@@ -29,12 +29,6 @@
           <img [src]="imagePreview" [alt]="updateMovieform.value.title" />
         </div>
         }
-        <!-- <div class="text-center">
-          <button class="button1" color="primary" type="submit">
-            Save Movie
-          </button>
-        </div> -->
-
         <div class="flex flex-wrap -m-2">
           <!-- Title -->
           <div class="p-2 w-1/2">
@@ -317,6 +311,16 @@
               </button>
             </div>
           </div>
+          <!-- upload award -->
+          <div class="p-2 w-1/2">
+            <div class="relative">
+              <button  type="button" (click)="awardfilePicker.click() " class="previous-button-style">
+                <input type="file" #awardfilePicker (change)="onAwardImagePicked($event)" hidden>
+                  Upload award
+                  <i class="fa-solid fa-cloud-arrow-up "></i>
+              </button>
+            </div>
+          </div>
           <!-- Submit -->
           <div class="p-2 w-full">
             <button
@@ -388,14 +392,17 @@
         </div>
         }
       </div>
-      <!-- } -->
-      <!-- <h1 class="title-font font-medium text-3xl text-gray-900">
-        Slow-carb next level shoindcgoitch ethical authentic, poko scenester
-      </h1>
-      <p class="leading-relaxed mt-4">
-        Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-        hammock starladder roathse. Craies vegan tousled etsy austin.
-      </p> -->
+      <div class="flex flex-row flex-wrap">
+        Awards : @for (awardUrl of uploadedAwardFilesUrls; track $index) {
+        <!-- <div
+          (click)="onDeleteItem('producers', $index)"
+          class="inline-block py-1 px-2 mx-1 rounded rounded-full bg-blue-100 text-gray-700 text-xs font-medium tracking-widest pill-list-hover pill-style"
+        >
+          {{ producer }}
+        </div> -->
+        <img [src]="awardUrl" [alt]="awardUrl" class="img-award" (click)="onDeleteAwardImg($index, awardUrl)" />
+        }
+      </div>
     </div>
   </div>
 </section>

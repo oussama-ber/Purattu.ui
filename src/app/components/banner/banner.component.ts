@@ -16,7 +16,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class BannerComponent {
   slides = [
-    
+
     '../../../assets/images/ll1.png',
     '../../../assets/images/ll2.png',
     '../../../assets/images/ll3.png',

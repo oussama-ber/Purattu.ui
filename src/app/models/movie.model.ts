@@ -15,6 +15,7 @@ export class Movie {
   public runningTime: number = 0;
   public producer: string[] = [];
   public awards: string [] = [];
+  public awardsUrls: string[] = [];
   public status: string = '';
   public imagePath: string = '';
   public imageUrl: string = '';
