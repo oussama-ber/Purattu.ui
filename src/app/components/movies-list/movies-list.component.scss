@@ -27,6 +27,7 @@ p {
 a {
   text-decoration: none;
   color: white;
+  height: 280px;
 }
 a:hover {
   text-decoration: none;
@@ -287,3 +288,8 @@ button.btn-movie:active{
   min-width: 300px;
 	padding: 0 30px;
 }
+.itemwrap{
+  display: flex;
+  flex-direction: row;
+}
+

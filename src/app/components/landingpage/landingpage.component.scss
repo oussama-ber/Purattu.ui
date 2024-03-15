@@ -230,7 +230,7 @@ text-transform: uppercase;
   justify-content: center;
 }
 .partners-title{
-  color: #FFF;
+  color: #032B43;
 
 font-family: Roboto;
 font-size: 60px;
@@ -301,8 +301,6 @@ $animationSpeed: 40s;
     transform: translateX(calc(100% + 100px));
   }
 }
-
-
 @media only screen and (max-width: 500px) {
   .section-title{
     font-size: 70px;
@@ -317,4 +315,20 @@ $animationSpeed: 40s;
       width: 100%;
     }
   }
+}
+.hovereffect:hover{
+  border-color: #f9f8f8;
+  border-radius: 5px;
+  border-width: 3px;
+  background: black;
+}
+.imgstyle{
+  height: 80%;
+    align-self: center;
+}
+.borderstyle{
+  border: 3px solid black !important;
+  border-color: black !important;
+  border-radius: 5px;
+  border-width: 3px;
 }

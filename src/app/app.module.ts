@@ -34,6 +34,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment.development';
+import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { environment } from '../environments/environment.development';
     EditBlogComponent,
     ServicesComponent,
     BannerComponent,
+    BlogDetailComponent,
   ],
   imports: [
     RouterLink,

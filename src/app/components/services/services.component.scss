@@ -144,6 +144,7 @@ background: linear-gradient(180deg, #032B43 0%, rgba(3, 43, 67, 0.61) 50.84%, rg
   font-weight: 900;
   line-height: normal;
   text-align: center;
+  padding-left: 1rem;
 }
 .move-left {
   animation: moveTextLeft 10s linear infinite;
@@ -338,4 +339,40 @@ img {
 }
 .service-content{
   color: #032B43;
+}
+.ads_sponsors div img {
+  width: 200px;
+  height: 150px;
+}
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  animation: slide 10s infinite linear;
+  height: 250px;
+}
+
+.slider img {
+  width: 100%; /* Adjust image width to fill slider */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slider img {
+      margin-right: 10px; /* Reduce margin for smaller screens */
+  }
 }
