@@ -16,6 +16,7 @@ import { CreateBlogComponent } from './components/Admin/manage-blogs/create-blog
 import { EditBlogComponent } from './components/Admin/manage-blogs/edit-blog/edit-blog.component';
 import { ServicesComponent } from './components/services/services.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   // {path: '', component: LayoutComponent},
@@ -24,15 +25,13 @@ const routes: Routes = [
   {path: 'blogs', component: BlogsComponent},
   {path: 'about', component: AboutUsComponent},
   {path: 'services', component: ServicesComponent},
-
+  {path: 'blogdetail', component: BlogDetailComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignupComponent},
-
   {path: 'detail/:movieid', component: MovieDetailsComponent},
   {path: 'manageMovies', component: ManageMoviesComponent, canActivate: [AuthGuard]},
   {path: 'createMovie', component: CreateMovieComponent, canActivate: [AuthGuard]},
   {path: 'editMovie/:movieid', component: EditMovieComponent, canActivate: [AuthGuard]},
-
   {path: 'manageBlogs', component: BlogsListComponent, canActivate: [AuthGuard]},
   {path: 'createBlog', component: CreateBlogComponent, canActivate: [AuthGuard]},
   {path: 'editBlog/:blogid', component: EditBlogComponent, canActivate: [AuthGuard]},
