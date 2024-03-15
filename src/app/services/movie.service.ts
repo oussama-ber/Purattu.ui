@@ -15,6 +15,8 @@ import {
 import { country } from '../models/shared.models';
 import { environment } from '../../environments/environment.development';
 import { SaveMovieAwardImage } from '../models/RequestOutput/saveMovieAwards.model';
+import { ApiConstants } from '../constants/apiConstants';
+import { GetGeneralKpi } from '../models/RequestOutput/generalKpi';
 
 @Injectable({
   providedIn: 'root',
@@ -29,19 +31,22 @@ export class MovieService {
   }
 
   fetchAllMovies(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/movies/fetchAllMovies`);
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.fetchAllMovies}`);
+  }
+  getGeneralKpi(): Observable<GetGeneralKpi> {
+    return this.http.get<GetGeneralKpi>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.getGeneralData}`);
   }
 
   fetchLastestMovies(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/movies/lastestMovies`);
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.lastestMovies}`);
   }
 
   getAllMovies(movieTag: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/movies?movieStatus=${movieTag}`);
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}?${ApiConstants.movieStatus}=${movieTag}`);
   }
 
   getMovie(movieId: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/movies/${movieId}`);
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${movieId}`);
   }
 
   insertMovie(createMovieDto: CreateMovieDTO): Observable<any> {
@@ -62,7 +67,7 @@ export class MovieService {
       status: createMovieDto.status,
     }
     return this.http
-      .post<any>(this.baseUrl + '/movies/createMovie', data)
+      .post<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.createMovie}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertMovie:', error);
@@ -80,7 +85,7 @@ export class MovieService {
       imageUrl : imageUrl
     }
     return this.http
-      .post<any>(this.baseUrl + '/movies/insertMovieImage', data)
+      .post<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.insertMovieImage}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertMovieImage:', error);
@@ -91,7 +96,7 @@ export class MovieService {
 
   saveMovieAwardImage(saveMovieAwardImage: SaveMovieAwardImage): Observable<any> {
     return this.http
-      .post<any>(this.baseUrl + '/movies/saveMovieAwardImage', saveMovieAwardImage)
+      .post<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.saveMovieAwardImage}`, saveMovieAwardImage)
       .pipe(
         catchError((error) => {
           console.error('Error in saveMovieAwardImage:', error);
@@ -119,7 +124,7 @@ export class MovieService {
       status: createMovieDto.status,
     }
     return this.http
-      .patch<any>(this.baseUrl + `/movies/${movieId}`, data)
+      .patch<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${movieId}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in updateMovie:', error);
@@ -129,7 +134,7 @@ export class MovieService {
   }
 
   deleteMovie(movieId: string): Observable<any> {
-    return this.http.delete<any>(this.baseUrl + `/movies/${movieId}`).pipe(
+    return this.http.delete<any>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${movieId}`).pipe(
       catchError((error) => {
         console.error('Error in deleteMovie:', error);
         throw error; // Rethrow the error to be caught by the subscriber

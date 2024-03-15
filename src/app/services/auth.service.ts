@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
 import { CreateMovieDTO, Movie } from '../models/movie.model';
 import { environment } from '../../environments/environment.development';
+import { ApiConstants } from '../constants/apiConstants';
 
 @Injectable({
   providedIn: 'root',
@@ -25,18 +26,21 @@ export class AuthService {
   getToken() {
     return this.token;
   }
+
   getIsAuth() {
     return this.isAuthenticated;
   }
+
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
+
   login(email: string, password: string) {
     const data = {
       email: email,
       password: password,
     };
-    this.http.post<any>(this.baseUrl + '/auth/login', data).subscribe(
+    this.http.post<any>(this.baseUrl + `/${ApiConstants.authEndPoint}/${ApiConstants.login}`, data).subscribe(
       (res) => {
         let userToken = res.token;
         if (userToken) {
@@ -53,6 +57,7 @@ export class AuthService {
     );
     return this.isAuthenticated;
   }
+
   signUp(
     username: string,
     email: string,
@@ -65,7 +70,7 @@ export class AuthService {
       password: password,
       confirmPassword: confirmPassword,
     };
-    this.http.post<any>(this.baseUrl + '/auth/signup', data).subscribe(
+    this.http.post<any>(this.baseUrl + `/${ApiConstants.authEndPoint}/${ApiConstants.signup}`, data).subscribe(
       (res) => {
         let userToken = res.userCreated;
         if (userToken) {
@@ -78,6 +83,7 @@ export class AuthService {
     );
     return this.isAuthenticated;
   }
+
   insertMovie(createMovieDto: CreateMovieDTO): Observable<any> {
     const postData = new FormData();
     postData.append('title', createMovieDto.title);
@@ -104,6 +110,7 @@ export class AuthService {
   private saveAuthData(token: string) {
     localStorage.setItem('token', token);
   }
+
   autoAuthUser() {
     const authInformation = this.getAuthData();
     if (!authInformation) {
@@ -113,6 +120,7 @@ export class AuthService {
     this.isAuthenticated = true;
     this.authStatusListener.next(true);
   }
+
   private getAuthData() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -122,13 +130,16 @@ export class AuthService {
       token: token,
     };
   }
+
   logout() {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     this.clearAuthData();
   }
+
   private clearAuthData() {
     localStorage.removeItem('token');
   }
+
   //#endregion utils
 }

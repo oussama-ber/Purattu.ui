@@ -1,25 +1,21 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Blog, CreateBlogDTO, UpdateBlogDTO, UpdateBlogWithFileDTO } from '../models/blog.model';
 import { environment } from '../../environments/environment.development';
+import { ApiConstants } from '../constants/apiConstants';
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
   baseUrl: string = environment.ApiBaseUrl;
 
   getAllBlogs(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + '/blogs');
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}`);
   }
   getBlog(blogId: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/blogs/${blogId}`);
+    return this.http.get<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}/${blogId}`);
   }
   insertBlog(createBlogDto: Blog): Observable<any> {
     const data = {
@@ -29,7 +25,7 @@ export class BlogService {
       createdBy: createBlogDto.createdBy,
     }
     return this.http
-      .post<any>(this.baseUrl + '/blogs/createblog', data)
+      .post<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}/${ApiConstants.createblog}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertMovie:', error);
@@ -43,7 +39,7 @@ export class BlogService {
       imageUrl : imageUrl
     }
     return this.http
-      .post<any>(this.baseUrl + '/blogs/insertBlogImage', data)
+      .post<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}/${ApiConstants.insertBlogImage}`, data)
       .pipe(
         catchError((error) => {
           console.error('Error in insertBlogImage:', error);
@@ -58,7 +54,7 @@ export class BlogService {
     // blogData.append('link', updateBlogDto.link);
     // blogData.append('createdby', updateBlogDto.createdby);
     return this.http
-      .patch<any>(this.baseUrl + `/blogs/${movieId}`, updateBlogDto)
+      .patch<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}/${movieId}`, updateBlogDto)
       .pipe(
         catchError((error) => {
           console.error('Error in updateBlog:', error);
@@ -68,7 +64,7 @@ export class BlogService {
   }
   deleteBlog(blogId: string): Observable<any> {
     return this.http
-      .delete<any>(this.baseUrl + `/blogs/${blogId}`)
+      .delete<any>(this.baseUrl + `/${ApiConstants.blogEndPoint}/${blogId}`)
       .pipe(
         catchError((error) => {
           console.error('Error in delete Blog:', error);

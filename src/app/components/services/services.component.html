@@ -40,28 +40,24 @@
           <button (click)="swithCountry()" class="btn-service" [ngClass]="{'selected-btn-service': country == 'iraq'}">Iraq</button>
         </div>
       </div>
-   
+
         <div class="container px-5 py-2 mx-auto">
           <div class="flex flex-wrap -m-4 text-center">
             <div class="p-4 sm:w-1/4 w-1/2">
-              <h2 class="title-font font-medium sm:text-4xl text-3xl text-blue">2.7K</h2>
-              <p class="leading-relaxed text-blue">Films</p>
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-blue">{{projects_initial}} {{projects_initial > 0 ? '+' : ''}} </h2>
+              <p class="leading-relaxed text-blue">Projects</p>
             </div>
             <div class="p-4 sm:w-1/4 w-1/2">
-              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">1.8K</h2>
-              <p class="leading-relaxed text-blue">Locations</p>
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">{{featureFilms_initial}} {{featureFilms_initial > 0 ? '+' : ''}}</h2>
+              <p class="leading-relaxed text-blue">Feature films</p>
             </div>
             <div class="p-4 sm:w-1/4 w-1/2">
-              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">35</h2>
-              <p class="leading-relaxed text-blue">Downloads</p>
-            </div>
-            <div class="p-4 sm:w-1/4 w-1/2">
-              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">4</h2>
-              <p class="leading-relaxed text-blue">Products</p>
+              <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 text-blue">{{marketingAttends}}{{marketingAttends > 0 ? '+' : ''}}</h2>
+              <p class="leading-relaxed text-blue">Marketing attends</p>
             </div>
           </div>
         </div>
-   
+
     </div>
 
   </div>
