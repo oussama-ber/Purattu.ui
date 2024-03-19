@@ -15,6 +15,8 @@ import {
 import { country } from '../models/shared.models';
 import { environment } from '../../environments/environment.development';
 import { SaveMovieAwardImage } from '../models/RequestOutput/saveMovieAwards.model';
+import { GetGeneralKpi } from '../models/RequestOutput/generalKpi';
+import { ApiConstants } from '../constants/apiConstants';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +25,10 @@ export class MovieService {
   constructor(private http: HttpClient, private router: Router) {}
   baseUrl: string = environment.ApiBaseUrl;
   courtriesUrl: string = 'assets/countries.json';
+
+  getGeneralKpi(): Observable<GetGeneralKpi> {
+    return this.http.get<GetGeneralKpi>(this.baseUrl + `/${ApiConstants.movieEndPoint}/${ApiConstants.getGeneralData}`);
+  }
 
   getCountries() {
     return this.http.get<country[]>(this.courtriesUrl);
@@ -99,7 +105,6 @@ export class MovieService {
         })
       );
   }
-
 
   updateMovie(movieId: string, createMovieDto: UpdateMovieWithFileDTO): Observable<any> {
     const data = {
