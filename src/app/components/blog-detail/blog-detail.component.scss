@@ -50,6 +50,7 @@ body{
     transition: 300ms ease-in-out;
     background-repeat: no-repeat;
     background-size: cover;
+    width: -webkit-fill-available;
   }
   .card__background--layer {
     z-index: 0;
@@ -84,7 +85,7 @@ body{
     }
     .blog-card__info{
       h5{
-        color: $primary; 
+        color: $primary;
       }
     }
   }

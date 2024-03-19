@@ -1,14 +1,19 @@
 <section class="py-2 bg-w sm:py-16 lg:py-24 z-40 relative flex justify-center bg-yellow mt-6 ">
-
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="fetchedBlogIsfetched">
     <div class="row">
       <div class="col-12">
         <article class="blog-card">
           <div class="blog-card__background">
             <div class="card__background--wrapper">
-              <div class="card__background--main" style="background-image: url('http://demo.yolotheme.com/html/motor/images/demo/demo_131.jpg');">
-                <div class="card__background--layer"></div>
-              </div>
+              <div
+              >
+              <img class="card__background--main" [src]="imageUrl" alt="">
+              test
+              <div class="card__background--layer"></div>
+              <!-- [ngStyle]="{'background-image': 'url(' + currentBlog.imagePath + ')'}" -->
+              <!-- style="background-image: url('https://firebasestorage.googleapis.com/v0/b/purattu.appspot.com/o/BlogsImages%2FScreenshot%202023-04-02%20024224.pngMon%20Feb%2019%202024%2016%3A36%3A10%20GMT%2B0100%20(GMT%2B01%3A00)?alt=media&token=e7c1c9f4-7130-48aa-99ba-59e2b85f8c5e');"
+              [style.background-image]="'url(' + dynamicImageUrl + ')'" -->
+            </div>
             </div>
           </div>
           <div class="blog-card__head">
@@ -18,12 +23,12 @@
             </span>
           </div>
           <div class="blog-card__info">
-            <h5>HARVICK GETS WHAT HE NEEDS, JOHNSON AMONG THOSE</h5>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque vero libero voluptatibus earum? Alias dignissimos quo cum, nulla esse facere atque, blanditiis doloribus at sunt quas, repellendus vel? Et, hic!</p>
+            <h5>{{currentBlog.title}}</h5>
+            <a (click)="goToLink(currentBlog.link)">Link</a>
           </div>
         </article>
       </div>
     </div>
   </div>
   </section>
- 
+

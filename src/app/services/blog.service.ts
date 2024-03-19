@@ -18,9 +18,11 @@ export class BlogService {
   getAllBlogs(): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/blogs');
   }
+
   getBlog(blogId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + `/blogs/${blogId}`);
   }
+
   insertBlog(createBlogDto: Blog): Observable<any> {
     const data = {
       title: createBlogDto.title,
@@ -37,6 +39,7 @@ export class BlogService {
         })
       );
   }
+
   insertBlogImage(blogId: string, imageUrl: string): Observable<any> {
     const data  = {
       blogId: blogId,
@@ -51,6 +54,7 @@ export class BlogService {
         })
       );
   }
+
   updateBlog(movieId: string, updateBlogDto: UpdateBlogDTO): Observable<any> {
     // const blogData = new FormData();
     // blogData.append('title', updateBlogDto.title);
@@ -66,6 +70,7 @@ export class BlogService {
         })
       );
   }
+
   deleteBlog(blogId: string): Observable<any> {
     return this.http
       .delete<any>(this.baseUrl + `/blogs/${blogId}`)
@@ -76,4 +81,5 @@ export class BlogService {
         })
       );
   }
+
 }
