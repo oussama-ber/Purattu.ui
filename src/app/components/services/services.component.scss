@@ -240,11 +240,38 @@ $animationSpeed: 40s;
 .button-wrapper{
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 25px;
   border-radius: 10px;
   background: #032B43;
   width: max-content;
   padding: 6px;
+}
+.btn-wrap{
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.btn-movie{
+  border-radius: 10px;
+  display: flex;
+  padding: 6px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #FBAB00;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+button.btn-movie:active{
+  background-color: #FBAB00 ;
+  color: white;
+}
+.selected-btn-movie{
+  background-color: #FBAB00 ;
+  color: #032B43;
 }
 .btn-service{
   border-radius: 10px;
@@ -375,4 +402,16 @@ img {
   .slider img {
       margin-right: 10px; /* Reduce margin for smaller screens */
   }
+}
+p {
+  color: #032b43;
+  font-size: 1.4em;
+}
+.fontstyle{
+  font-size: 3.5rm;
+}
+.kpiwrap{
+  gap: 2rem;
+  display: flex;
+  flex-wrap: nowrap;
 }

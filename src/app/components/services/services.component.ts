@@ -9,6 +9,7 @@ declare let AOS: any;
 export class ServicesComponent implements OnInit{
 
   country: string = "canada";
+  canadatap:boolean=true;
   slides = [
     '../../../assets/images/c1.jpg',
     '../../../assets/images/c2.jpg',
