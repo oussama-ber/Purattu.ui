@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'blogs', component: BlogsComponent},
   {path: 'about', component: AboutUsComponent},
   {path: 'services', component: ServicesComponent},
-  {path: 'blogdetail', component: BlogDetailComponent},
+  {path: 'blogdetail/:blogid', component: BlogDetailComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignupComponent},
   {path: 'detail/:movieid', component: MovieDetailsComponent},

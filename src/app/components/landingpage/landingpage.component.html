@@ -2,84 +2,21 @@
   <div class="carousel">
     <ul class="slides">
       @for (latestMovie of latestMovies; track $index) {
-      <!-- [id]="latestMovie.id" -->
         <input type="radio" name="radio-buttons" [id]="currentIndex" [checked]="$index == currentIndex" />
         <li class="slide-container">
           <div class="slide-image">
             <img [src]="latestMovie.imagePath" />
           </div>
           <div class="carousel-controls">
-            <!-- [for]="getPreviousIndex($index)"  -->
             <label class="prev-slide" (click)="getPreviousIndex($index)">
               <span>&lsaquo;</span>
             </label>
-            <!-- [for]="getNextIndex($index)" -->
             <label  class="next-slide" (click)="getNextIndex($index)">
               <span>&rsaquo;</span>
             </label>
           </div>
         </li>
       }
-      <!-- <input type="radio" name="radio-buttons" id="img-2" />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 17.png" />
-
-        </div>
-        <div class="carousel-controls">
-          <label for="img-1" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-3" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li>
-      <input type="radio" name="radio-buttons" id="img-3" />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 21.png" />
-
-        </div>
-        <div class="carousel-controls">
-          <label for="img-2" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-4" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li>
-      <input type="radio" name="radio-buttons" id="img-4" />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 23.png" />
-
-        </div>
-        <div class="carousel-controls">
-          <label for="img-3" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-5" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li>
-      <input type="radio" name="radio-buttons" id="img-5" />
-      <li class="slide-container">
-        <div class="slide-image">
-          <img src="../../../assets/images/Frame 25.png" />
-
-        </div>
-        <div class="carousel-controls">
-          <label for="img-4" class="prev-slide">
-            <span>&lsaquo;</span>
-          </label>
-          <label for="img-1" class="next-slide">
-            <span>&rsaquo;</span>
-          </label>
-        </div>
-      </li> -->
     </ul>
   </div>
 </div>
@@ -94,7 +31,27 @@
       and Middle East, with our home in Toronto and Baghdad.</span
     >
   </div>
+  <!-- kpi starts -->
+  <div class="container px-5 py-5 mt-40 w-full items-center mx-auto max-w-screen-lg">
+    <div class="flex flex-wrap -m-4 text-center">
+      <div class="p-4 sm:w-1/3 w-1/2">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl kpi-styles">{{projects_initial}} {{projects_initial > 0 ? '+' : ''}} </h2>
+        <p class="leading-relaxed kpi-styles">Projects</p>
+      </div>
+      <div class="p-4 sm:w-1/3 w-1/2">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 kpi-styles">{{featureFilms_initial}} {{featureFilms_initial > 0 ? '+' : ''}}</h2>
+        <p class="leading-relaxed kpi-styles">Feature films</p>
+      </div>
+      <div class="p-4 sm:w-1/3 w-1/2">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900 kpi-styles">{{marketingAttends}}{{marketingAttends > 0 ? '+' : ''}}</h2>
+        <p class="leading-relaxed kpi-styles">Marketing attends</p>
+      </div>
+    </div>
+  </div>
+  <!-- kpi ends -->
 </div>
+
+
 <div
   class="relative flex min-h-screen flex-row justify-center overflow-hidden bg-yellow py-6 sm:py-12 querry"
 >
