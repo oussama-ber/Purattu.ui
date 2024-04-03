@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-declare let AOS: any;
+import AOS from 'aos'; 
 
 @Component({
   selector: 'app-services',
@@ -33,7 +33,7 @@ export class ServicesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // AOS.init();
+    AOS.init();
 
     // setInterval(() => this.moveNext(), 1000);
   }

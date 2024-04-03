@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Blog } from '../../models/blog.model';
 import { BlogService } from '../../services/blog.service';
+import AOS from 'aos'; 
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
@@ -17,6 +18,8 @@ export class BlogsComponent implements OnInit {
   //#endregion Variables
   ngOnInit(): void {
     this.getAllBlogs();
+    AOS.init();
+
   }
   getAllBlogs() {
     this._blogService.getAllBlogs().subscribe(

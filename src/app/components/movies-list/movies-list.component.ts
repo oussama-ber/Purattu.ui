@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Movie } from '../../models/movie.model';
+import AOS from 'aos'; 
 
 @Component({
   selector: 'app-movies-list',
@@ -26,6 +27,7 @@ export class MoviesListComponent implements OnInit {
   //#endregion Variables
   ngOnInit(): void {
     this.getAllMovies(this.movieStatus);
+    AOS.init();
   }
   getAllMovies(movieStatus: string) {
     this._movieService.fetchAllMovies().subscribe(

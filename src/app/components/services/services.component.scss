@@ -360,7 +360,43 @@ img {
   height: auto; /* Maintain aspect ratio */
   margin-right: 20px;
 }
-
+.button-wrapper{
+  display: flex;
+  padding: 6px 4px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  background: #032B43;
+  justify-content: center;
+  margin-top: 10px;
+}
+.btn-movie{
+  border-radius: 10px;
+  display: flex;
+  padding: 6px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #FBAB00;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+button.btn-movie:active{
+  background-color: #FBAB00 ;
+  color: white;
+}
+.selected-btn-movie{
+  background-color: #FBAB00 ;
+  color: #032B43;
+}
+.elementwrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 @keyframes slide {
   0% {
       transform: translateX(0);
