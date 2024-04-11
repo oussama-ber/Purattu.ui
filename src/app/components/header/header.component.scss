@@ -204,3 +204,22 @@ a{
 .color{
   color:aliceblue ;
 }
+.header-wrap{
+  display: flex;
+  justify-content: center;
+}
+.li-helper{
+  white-space: nowrap;
+}
+.display-helper{
+  display: none;
+}
+@media only screen and (max-width: 900px) {
+  .header-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .display-helper{
+    display: unset;
+  }
+}

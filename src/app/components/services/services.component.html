@@ -207,180 +207,21 @@
   <div class="w-full items-center" data-aos="fade-up" data-aos-duration="1800">
     <h2 class="partners-title justify-start flex ">Locations</h2>
     <div class="slider-container">
-      <div  *ngIf="country==='canada'" class="slider">
-        <img
-          src="../../../assets/images/c1.jpg"
-          alt="Image "
-        />
-        <img
-          src="../../../assets/images/c2.jpg"
-          alt="Image 2"
-        />
-        <img
-          src="../../../assets/images/c3.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c4.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c5.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c1.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c2.jpg"
-          alt="Image 3"
-        />
-        <img
-        src="../../../assets/images/c1.jpg"
-        alt="Image 1"
-      />
-      <img
-        src="../../../assets/images/c2.jpg"
-        alt="Image 2"
-      />
-      <img
-        src="../../../assets/images/c3.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/c4.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/c5.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/c1.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/c2.jpg"
-        alt="Image 3"
-      />
-      <img
-          src="../../../assets/images/c1.jpg"
-          alt="Image 1"
-        />
-        <img
-          src="../../../assets/images/c2.jpg"
-          alt="Image 2"
-        />
-        <img
-          src="../../../assets/images/c3.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c4.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c5.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c1.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/c2.jpg"
-          alt="Image 3"
-        />
-        <!-- Add more images here -->
+      <div *ngIf="country==='canada'" class="slider">
+        <div class="slide-track">
+          <div class="slide" *ngFor="let slide of slides">
+            <img [src]="slide" alt="logo">
+          </div>
+        </div>
       </div>
       <div *ngIf="country==='iraq'" class="slider">
-        <img
-          src="../../../assets/images/q1.jpg"
-          alt="Image 1"
-        />
-        <img
-          src="../../../assets/images/q2.jpg"
-          alt="Image 2"
-        />
-        <img
-          src="../../../assets/images/q3.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q4.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q5.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q1.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q2.jpg"
-          alt="Image 3"
-        />
-        <img
-        src="../../../assets/images/q1.jpg"
-        alt="Image 1"
-      />
-      <img
-        src="../../../assets/images/q2.jpg"
-        alt="Image 2"
-      />
-      <img
-        src="../../../assets/images/q3.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/q4.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/q5.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/q1.jpg"
-        alt="Image 3"
-      />
-      <img
-        src="../../../assets/images/q2.jpg"
-        alt="Image 3"
-      />
-      <img
-          src="../../../assets/images/q1.jpg"
-          alt="Image 1"
-        />
-        <img
-          src="../../../assets/images/q2.jpg"
-          alt="Image 2"
-        />
-        <img
-          src="../../../assets/images/q3.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q4.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q5.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q1.jpg"
-          alt="Image 3"
-        />
-        <img
-          src="../../../assets/images/q2.jpg"
-          alt="Image 3"
-        />
-        <!-- Add more images here -->
+        <div class="slide-track">
+          <div class="slide" *ngFor="let slide of slidesss">
+            <img [src]="slide" alt="logo">
+          </div>
+        </div>
       </div>
+    
     </div>
     <div class="elementwrap">
       <div class="button-wrapper">

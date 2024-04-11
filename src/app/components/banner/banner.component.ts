@@ -58,4 +58,8 @@ export class BannerComponent {
     '../../../assets/images/ll13.png',
   ];
 
+  constructor() {
+    this.slides = [...this.slides, ...this.slides];
+  }
+
 }
