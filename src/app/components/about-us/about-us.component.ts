@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-declare let AOS: any;
+
+import AOS from 'aos'; 
 
 @Component({
   selector: 'app-about-us',

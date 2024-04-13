@@ -5,31 +5,29 @@ img {
   margin: auto; /* Center the images */
 }
 
-.slide {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Ensure that larger images don't overflow the container */
-}
-
-.slide-track {
-  display: flex;
-  gap: 1em;
-  width: fit-content;
-  // animation: scroll 10s linear infinite;
-  /* Set the animation duration based on your preference */
-}
-
 .slider {
   background-color: transparent;
   padding: 5em 2em;
   overflow: hidden;
 }
 
+.slide-track {
+  display: flex;
+  gap: 1em;
+  animation: scroll 20s linear infinite; /* Adjusted animation duration */
+}
+
+.slide {
+  width: 150px;
+  height: 120px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(calc(-100% - 1em)); }
-  /* Adjust the value based on the number of slides and the gap between them */
 }

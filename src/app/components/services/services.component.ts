@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-declare let AOS: any;
+import AOS from 'aos'; 
 
 @Component({
   selector: 'app-services',
@@ -15,9 +15,29 @@ export class ServicesComponent implements OnInit{
     '../../../assets/images/c2.jpg',
     '../../../assets/images/c3.jpg',
     '../../../assets/images/c4.jpg',
+    '../../../assets/images/c5.jpg',
+    '../../../assets/images/c1.jpg',
+    '../../../assets/images/c2.jpg',
+    '../../../assets/images/c3.jpg',
+    '../../../assets/images/c4.jpg',
+    '../../../assets/images/c5.jpg',
+    '../../../assets/images/c1.jpg',
+    '../../../assets/images/c2.jpg',
+    '../../../assets/images/c3.jpg',
+    '../../../assets/images/c4.jpg',
     '../../../assets/images/c5.jpg'
   ];
   slidesss = [
+    '../../../assets/images/q1.jpg',
+    '../../../assets/images/q2.jpg',
+    '../../../assets/images/q3.jpg',
+    '../../../assets/images/q4.jpg',
+    '../../../assets/images/q5.jpg',
+    '../../../assets/images/q1.jpg',
+    '../../../assets/images/q2.jpg',
+    '../../../assets/images/q3.jpg',
+    '../../../assets/images/q4.jpg',
+    '../../../assets/images/q5.jpg',
     '../../../assets/images/q1.jpg',
     '../../../assets/images/q2.jpg',
     '../../../assets/images/q3.jpg',
@@ -30,11 +50,13 @@ export class ServicesComponent implements OnInit{
 
 
   constructor() {
+    this.slidesss = [...this.slidesss, ...this.slidesss];
+    this.slides = [...this.slides, ...this.slides];
 
   }
 
   ngOnInit(): void {
-    // AOS.init();
+    AOS.init();
 
     // setInterval(() => this.moveNext(), 1000);
   }

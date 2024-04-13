@@ -183,8 +183,8 @@ $animationSpeed: 40s;
         width: calc(250px * 14);
     }
     .slide {
-        height: 100px;
-        width: 250px;
+      height: 265px;
+      width: 250px;
     }
 }
 @keyframes moveTextRight {
@@ -387,15 +387,77 @@ img {
   height: auto; /* Maintain aspect ratio */
   margin-right: 20px;
 }
-
-@keyframes slide {
-  0% {
-      transform: translateX(0);
-  }
-  100% {
-      transform: translateX(-100%);
-  }
+.button-wrapper{
+  display: flex;
+  padding: 6px 4px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  background: #032B43;
+  justify-content: center;
+  margin-top: 10px;
 }
+.btn-movie{
+  border-radius: 10px;
+  display: flex;
+  padding: 6px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #FBAB00;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+button.btn-movie:active{
+  background-color: #FBAB00 ;
+  color: white;
+}
+.selected-btn-movie{
+  background-color: #FBAB00 ;
+  color: #032B43;
+}
+.elementwrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto; /* Center the images */
+}
+
+.slider {
+  background-color: transparent;
+  padding: 0em 2em;
+  overflow: hidden;
+}
+
+.slide-track {
+  display: flex;
+  gap: 1em;
+  animation: scroll 20s linear infinite; /* Adjusted animation duration */
+}
+
+.slide {
+  width: 150px;
+  height: 120px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% - 1em)); }
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

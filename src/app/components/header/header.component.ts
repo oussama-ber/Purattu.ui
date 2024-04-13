@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   routerEvents: any;
   _authService = inject(AuthService);
 
+  isMenuOpen: boolean = false;
   constructor(private router: Router) {
     this.routerEvents = this.router.events.subscribe(
       (event:any)=>{
@@ -36,6 +37,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._authService.logout();
     this.router.navigate(['/'])
   }
+
+  showSidebar() {
+    const sidebar = document.querySelector(".sidebar") as HTMLElement;
+    if (sidebar) {
+      sidebar.style.display = 'flex';
+      setTimeout(() => {
+          sidebar.style.transform = 'translateX(0)'; 
+      }, 10);
+    }
+  }
+  
+  closeSidebar() {
+    const sidebar = document.querySelector(".sidebar") as HTMLElement;
+    if (sidebar) {
+      sidebar.style.transform = 'translateX(100%)'; 
+      setTimeout(() => {
+          sidebar.style.display = 'none';
+      }, 300);
+    }
+  }
+  
+  
   ngOnDestroy(): void {
     this.authListenerSubs.unsubscribe();
     this.routerEvents.unsubscribe();
