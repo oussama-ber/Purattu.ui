@@ -173,14 +173,14 @@ $animationSpeed: 40s;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  font-size: 20px;
+  font-size: 15px;
   color: aliceblue;
 }
 .arabic-font{
   font-family: "Aref Ruqaa", serif !important;
   font-weight: 400;
   font-style: normal;
-  font-size: 25px;
+  font-size: 20px;
 }
 .nav-setting{
   margin-left:0px;
@@ -213,6 +213,10 @@ a{
 }
 .display-helper{
   display: none;
+}
+.ul-align{
+  display: flex;
+  align-items: center;
 }
 @media only screen and (max-width: 900px) {
   .header-wrap {
